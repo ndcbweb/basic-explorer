@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import ContractSource, { VerifyPrompt } from "@/components/ContractSource";
 import CopyButton from "@/components/CopyButton";
 import { TransferTable, TxTable } from "@/components/tables";
 import { AddressLink, Container, DetailList, DetailRow, EmptyState, Pagination, Tabs, TokenLink, TxLink } from "@/components/ui";
 import { config } from "@/lib/config";
+import { getVerified } from "@/lib/contracts";
 import { formatAmount, formatNumber, isAddress } from "@/lib/format";
 import {
   addressTokenBalances,
@@ -37,6 +39,7 @@ export default async function AddressPage({ params, searchParams }) {
   const isContract = code && code !== "0x";
   const token = isContract ? tokenInfo(address) : null;
   const creation = isContract ? contractCreation(address) : null;
+  const verified = isContract ? getVerified(address) : null;
   const validated = blocksValidated(address);
   const totalTxs = addressTxCount(address);
   const totalTransfers = tokenTransferCount({ address });
@@ -50,7 +53,7 @@ export default async function AddressPage({ params, searchParams }) {
     { id: "transfers", label: "Token Transfers", count: totalTransfers },
     { id: "holdings", label: "Token Holdings", count: holdings.length },
   ];
-  if (isContract) tabs.push({ id: "code", label: "Contract" });
+  if (isContract) tabs.push({ id: "code", label: verified ? "Contract ✓" : "Contract" });
 
   return (
     <Container>
@@ -59,6 +62,7 @@ export default async function AddressPage({ params, searchParams }) {
           <h1 className="text-xl font-semibold tracking-tight">{isContract ? "Contract" : "Address"}</h1>
           {validated > 0 && <span className="chip border-brand-100 bg-brand-50 text-brand-700">Validator</span>}
           {token && <span className="chip">{token.token_type}</span>}
+          {verified && <span className="chip border-ok-700/25 bg-ok-50 text-ok-700">Source Code Verified</span>}
         </div>
         <p className="flex items-center gap-1 text-sm">
           <span className="mono break-all text-ink">{address}</span>
@@ -186,20 +190,24 @@ export default async function AddressPage({ params, searchParams }) {
               <EmptyState title="No token holdings" body="This address has not received any ERC-20 or ERC-721 tokens." />
             ))}
           {tab === "code" && (
-            <div className="p-5">
-              <p className="mb-2 text-sm text-muted">
-                Contract bytecode · {formatNumber((code.length - 2) / 2)} bytes
-                {creation && (
-                  <>
-                    {" "}
-                    · deployed in block <Link href={`/block/${creation.block_number}`}>{formatNumber(creation.block_number)}</Link>
-                  </>
-                )}
-              </p>
-              <pre className="mono max-h-[420px] overflow-auto rounded-md border border-line bg-canvas p-3 break-all whitespace-pre-wrap text-muted">
-                {code}
-              </pre>
-            </div>
+            <>
+              <div className="card-head">
+                <p className="text-sm text-muted">
+                  Contract bytecode · {formatNumber((code.length - 2) / 2)} bytes
+                  {creation && (
+                    <>
+                      {" "}
+                      · deployed in block <Link href={`/block/${creation.block_number}`}>{formatNumber(creation.block_number)}</Link>
+                    </>
+                  )}
+                </p>
+                <span className="flex gap-3 text-sm">
+                  <Link href={`/find-similar-contracts?a=${address}`}>Similar contracts</Link>
+                  <Link href={`/code-reader?a=${address}`}>Code reader</Link>
+                </span>
+              </div>
+              {verified ? <ContractSource contract={verified} code={code} /> : <VerifyPrompt address={address} code={code} />}
+            </>
           )}
         </section>
       </div>
