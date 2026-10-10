@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { addNetworkToWallet } from "@/lib/add-network";
 import SearchBar from "./SearchBar";
 
 export function ThemeToggle() {
@@ -53,31 +54,16 @@ export function HeaderSearch() {
   );
 }
 
-export function AddNetworkIcon({ chainId, chainName, currency, currencyName }) {
+export function AddNetworkIcon({ chainId, chainName, currency, currencyName, rpcUrl }) {
   const [done, setDone] = useState(false);
   if (!chainId) return null;
 
   const add = async () => {
-    if (!window.ethereum) {
-      window.alert("Install MetaMask or another EVM wallet to add this network.");
-      return;
-    }
     try {
-      await window.ethereum.request({
-        method: "wallet_addEthereumChain",
-        params: [
-          {
-            chainId: `0x${Number(chainId).toString(16)}`,
-            chainName,
-            nativeCurrency: { name: currencyName || currency, symbol: currency, decimals: 18 },
-            rpcUrls: [`${window.location.protocol}//${window.location.hostname}:8545`],
-            blockExplorerUrls: [window.location.origin],
-          },
-        ],
-      });
-      setDone(true);
-    } catch {
+      setDone(await addNetworkToWallet({ chainId, chainName, currency, currencyName, rpcUrl }));
+    } catch (error) {
       setDone(false);
+      window.alert(error.message);
     }
   };
 

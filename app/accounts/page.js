@@ -15,7 +15,7 @@ export default async function AccountsPage() {
 
   return (
     <Container>
-      <PageHeader title="Top Accounts" subtitle={`Most active ${formatNumber(rows.length)} addresses, ranked by ${config.currency} balance`} />
+      <PageHeader title="Top Accounts" subtitle={`Top ${formatNumber(rows.length)} addresses, ranked by ${config.currency} balance`} />
       <section className="card overflow-hidden">
         {rows.length ? (
           <div className="table-wrap">

@@ -124,7 +124,7 @@ export default function Footer() {
               {config.chainId ? ` (Chain ID ${config.chainId})` : ""}, an EVM-compatible network built with Nadcab Labs.
             </p>
             <div className="mt-5">
-              <AddNetworkButton chainId={config.chainId} chainName={config.chainName} currency={config.currency} currencyName={config.currencyName} />
+              <AddNetworkButton chainId={config.chainId} chainName={config.chainName} currency={config.currency} currencyName={config.currencyName} rpcUrl={config.publicRpcUrl} />
             </div>
           </div>
 
