@@ -127,7 +127,7 @@ export default async function AddressPage({ params, searchParams }) {
                 <TokenLink address={address} name={token.name} symbol={token.symbol} />
               </DetailRow>
             )}
-            <DetailRow label="Blocks Validated" hint="Blocks sealed by this address as a PoA signer">
+            <DetailRow label="Blocks Validated" hint="Blocks produced by this address">
               {validated ? formatNumber(validated) : <span className="text-muted">0</span>}
             </DetailRow>
             <DetailRow label="Indexed Activity">

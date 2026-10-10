@@ -1,5 +1,6 @@
 import ListPage, { Notice } from "@/components/ListPage";
 import { AddressLink, BlockLink, EmptyState } from "@/components/ui";
+import { config } from "@/lib/config";
 import { formatNumber, shortHash, timeAgo } from "@/lib/format";
 import { forkedBlockCount, forkedBlocks, pageParams } from "@/lib/queries";
 
@@ -23,8 +24,8 @@ export default async function ForkedBlocksPage({ searchParams }) {
       above={
         total === 0 ? (
           <Notice title="No reorgs observed">
-            Clique networks rarely reorganise, because signers take turns in a fixed order. If two signers ever seal competing blocks, the
-            losing ones are recorded here.
+            Validators on {config.chainName} take turns producing blocks, so reorganisations are rare. If competing blocks are ever produced,
+            the losing ones are recorded here.
           </Notice>
         ) : null
       }

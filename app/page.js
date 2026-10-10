@@ -91,7 +91,7 @@ export default async function HomePage() {
             </StatRow>
             <StatRow>
               <StatItem icon={icons.shield} label="Validators">
-                {formatNumber(signers.length)} <span className="text-muted">(Proof of Authority)</span>
+                {formatNumber(config.validatorCount || signers.length)} <span className="text-muted">({config.consensus.name})</span>
               </StatItem>
             </StatRow>
           </div>

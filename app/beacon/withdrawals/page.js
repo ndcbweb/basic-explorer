@@ -22,10 +22,17 @@ export default async function BeaconWithdrawalsPage({ searchParams }) {
       limit={limit}
       above={
         total === 0 ? (
-          <Notice title="Proof of Authority network">
-            Withdrawals (EIP-4895) are pushed by a beacon chain. {config.chainName} is sealed by Clique signers, so blocks carry no
-            withdrawals and this list stays empty.
-          </Notice>
+          config.consensus.key === "pos" ? (
+            <Notice title="No withdrawals yet">
+              Withdrawals (EIP-4895) are swept by the beacon chain to each validator&apos;s withdrawal address and appear here once included in
+              blocks.
+            </Notice>
+          ) : (
+            <Notice title={`${config.consensus.name} network`}>
+              Withdrawals (EIP-4895) are pushed by a beacon chain. {config.chainName} has no beacon chain, so blocks carry no withdrawals and
+              this list stays empty.
+            </Notice>
+          )
         ) : null
       }
     >

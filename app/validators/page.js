@@ -1,5 +1,6 @@
 import AutoRefresh from "@/components/AutoRefresh";
 import { AddressLink, BlockLink, Container, EmptyState, PageHeader } from "@/components/ui";
+import { config } from "@/lib/config";
 import { formatNumber, timeAgo } from "@/lib/format";
 import { blockCount, validators } from "@/lib/queries";
 
@@ -13,7 +14,7 @@ export default function ValidatorsPage() {
   return (
     <Container>
       <AutoRefresh intervalMs={8000} />
-      <PageHeader title="Validators" subtitle={`Proof of Authority signers · ${formatNumber(blockCount())} blocks indexed`} />
+      <PageHeader title="Validators" subtitle={`${config.consensus.producers} · ${formatNumber(blockCount())} blocks indexed`} />
       <section className="card overflow-hidden">
         {rows.length ? (
           <div className="table-wrap">

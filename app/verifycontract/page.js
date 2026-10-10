@@ -34,7 +34,7 @@ export default async function VerifyContractPage({ searchParams }) {
               <li>Use the exact compiler version, optimizer setting, runs and EVM version used at deployment.</li>
               <li>Single-file sources must be flattened: imports are not resolved. Use Standard-JSON input for multi-file projects.</li>
               <li>The trailing CBOR metadata and immutable values are ignored, so a different metadata hash still verifies as a partial match.</li>
-              <li>Clique networks often run pre-Shanghai rules; pick an older EVM version if your deployment avoided PUSH0.</li>
+              <li>Pick an older EVM version if your contract was compiled for a chain without PUSH0 (pre-Shanghai rules).</li>
             </ul>
           </div>
           <div className="card p-5 text-sm text-muted">

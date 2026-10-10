@@ -118,7 +118,7 @@ export default async function NetworkStatusPage() {
               ["Indexed Block", index.indexed >= 0 ? formatNumber(index.indexed) : "—"],
               ["Gas Price", gasHex ? `${formatGwei(gasHex)} Gwei` : "—"],
               ["Avg Block Time", blockTime ? `${blockTime.toFixed(2)} s` : "—"],
-              ["Consensus", "Proof of Authority (Clique)"],
+              ["Consensus", config.consensus.detail],
               ["Native Currency", config.currency],
             ].map(([label, value]) => (
               <div key={label} className="flex justify-between gap-4 px-5 py-3">

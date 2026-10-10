@@ -16,7 +16,7 @@ export default function UnclesPage() {
       limit={25}
       above={
         <Notice title="Uncles do not occur on this network">
-          Uncle (ommer) blocks were a Proof of Work concept. {config.chainName} uses Proof of Authority, so every block header has an empty
+          Uncle (ommer) blocks were a Proof of Work concept. {config.chainName} uses {config.consensus.name}, so every block header has an empty
           uncle list. Replaced blocks, if any, are tracked under <Link href="/blocks-forked">Forked Blocks</Link>.
         </Notice>
       }

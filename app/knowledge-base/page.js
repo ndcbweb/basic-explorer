@@ -50,8 +50,22 @@ const ARTICLES = [
     q: `How does ${config.chainName} produce blocks?`,
     a: (
       <p>
-        {config.chainName} uses Proof of Authority (Clique). A fixed set of approved <Link href="/validators">validators</Link> take turns sealing
-        blocks. The validator for each block is recovered from the block&apos;s signature and shown as <strong>Validated By</strong>.
+        {config.consensus.key === "pos" ? (
+          <>
+            {config.chainName} uses Proof of Stake. Staked validators on the beacon chain propose and attest to blocks; each block&apos;s fee
+            recipient is shown as <strong>Validated By</strong>.
+          </>
+        ) : config.consensus.key === "dpos" ? (
+          <>
+            {config.chainName} uses Delegated Proof of Stake (Parlia). Holders delegate stake to validators in the StakeHub system contract,
+            and the elected <Link href="/validators">validators</Link> take turns producing blocks, shown as <strong>Validated By</strong>.
+          </>
+        ) : (
+          <>
+            {config.chainName} uses Proof of Authority (Clique). A fixed set of approved <Link href="/validators">validators</Link> take turns
+            sealing blocks. The validator for each block is recovered from the block&apos;s signature and shown as <strong>Validated By</strong>.
+          </>
+        )}
       </p>
     ),
   },

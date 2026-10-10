@@ -75,7 +75,7 @@ export default async function BlockPage({ params }) {
             )}{" "}
             <span className="text-muted">in this block</span>
           </DetailRow>
-          <DetailRow label="Validated By" hint="Proof of Authority signer that sealed this block">
+          <DetailRow label="Validated By" hint={`Block producer (${config.consensus.name})`}>
             <AddressLink address={signer} full copy />
           </DetailRow>
           <DetailRow label="Transaction Fees">
