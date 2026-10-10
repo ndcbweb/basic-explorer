@@ -2,6 +2,7 @@ import Link from "next/link";
 import { config } from "@/lib/config";
 import { formatGwei, formatNumber } from "@/lib/format";
 import { safeRpc } from "@/lib/rpc";
+import { getSettings } from "@/lib/settings";
 import { AddNetworkIcon, HeaderSearch, ThemeToggle } from "./HeaderTools";
 import Logo from "./Logo";
 import NavBar from "./NavBar";
@@ -12,12 +13,21 @@ export default async function Header() {
     safeRpc("eth_blockNumber", [], null, { timeoutMs: 1500 }),
   ]);
   const head = headHex ? Number(BigInt(headHex)) : null;
+  const settings = getSettings();
 
   return (
     <header className="sticky top-0 z-40 bg-surface">
       <div className="border-b border-line">
         <div className="mx-auto flex h-11 max-w-[1320px] items-center justify-between gap-4 px-4 text-xs text-muted sm:px-6">
           <div className="flex min-w-0 items-center gap-4 overflow-hidden whitespace-nowrap">
+            {settings.coinPriceUsd != null && (
+              <span>
+                {config.currency} Price:{" "}
+                <span className="text-brand-600">
+                  ${settings.coinPriceUsd.toLocaleString("en-US", { maximumFractionDigits: settings.coinPriceUsd < 1 ? 6 : 2 })}
+                </span>
+              </span>
+            )}
             <span>
               {config.currency}
               {config.chainId ? (
@@ -50,7 +60,7 @@ export default async function Header() {
         <div className="mx-auto flex h-14 max-w-[1320px] items-center justify-between gap-6 px-4 sm:px-6">
           <Link href="/" className="flex shrink-0 items-center gap-2 text-ink hover:text-ink">
             <Logo className="h-7 w-7" />
-            <span className="text-lg font-semibold">{config.chainName}</span>
+            {!(settings.logo && settings.hideNameWithLogo) && <span className="text-lg font-semibold">{config.chainName}</span>}
           </Link>
           <NavBar />
         </div>

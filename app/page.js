@@ -7,6 +7,7 @@ import { config } from "@/lib/config";
 import { formatAmount, formatGwei, formatNumber, timeAgo } from "@/lib/format";
 import { avgBlockTime, latestBlocks, latestTxs, recentTps, txCount, txHistory, validators } from "@/lib/queries";
 import { safeRpc } from "@/lib/rpc";
+import { getSettings } from "@/lib/settings";
 
 function StatItem({ icon, label, children, align = "left" }) {
   return (
@@ -56,6 +57,7 @@ export default async function HomePage() {
   const totalTxs = txCount();
   const blockTime = avgBlockTime();
   const tps = recentTps();
+  const settings = getSettings();
   const signers = validators();
   const history = txHistory(14);
   const head = headHex ? Number(BigInt(headHex)) : blocks[0]?.number;
@@ -70,8 +72,8 @@ export default async function HomePage() {
           aria-hidden="true"
         />
         <div className="relative mx-auto max-w-[1320px] px-4 pt-10 pb-24 sm:px-6">
-          <p className="mb-2 text-sm font-medium text-[#8ea6e8]">{config.chainId ? `Chain ID ${config.chainId}` : "EVM network"}</p>
-          <h1 className="mb-5 text-xl font-medium text-white">The {config.chainName} Explorer</h1>
+          <p className="mb-2 text-sm font-medium text-[#8ea6e8]">{settings.heroSubtitle || (config.chainId ? `Chain ID ${config.chainId}` : "EVM network")}</p>
+          <h1 className="mb-5 text-xl font-medium text-white">{settings.heroTitle || `The ${config.chainName} Explorer`}</h1>
           <div className="max-w-2xl">
             <SearchBar size="lg" />
           </div>

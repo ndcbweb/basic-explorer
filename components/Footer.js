@@ -2,6 +2,7 @@ import Link from "next/link";
 import { config } from "@/lib/config";
 import { indexerStatus } from "@/lib/indexer";
 import { formatNumber } from "@/lib/format";
+import { getSettings } from "@/lib/settings";
 import { AddNetworkButton, BackToTop } from "./FooterActions";
 import Logo from "./Logo";
 
@@ -60,6 +61,26 @@ const SOCIALS = [
   },
 ];
 
+const BRAND_ICONS = {
+  twitter: { label: "X (Twitter)", viewBox: "0 0 24 24", path: "M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" },
+  telegram: { label: "Telegram", viewBox: "0 0 24 24", path: "M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" },
+  discord: { label: "Discord", viewBox: "0 0 24 24", path: "M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z" },
+  email: { label: "Email", path: "M3.75 4A1.75 1.75 0 0 0 2 5.75v8.5C2 15.22 2.78 16 3.75 16h12.5c.97 0 1.75-.78 1.75-1.75v-8.5C18 4.78 17.22 4 16.25 4H3.75Zm-.25 2.37v7.88c0 .14.11.25.25.25h12.5a.25.25 0 0 0 .25-.25V6.37l-6.1 4.07a.75.75 0 0 1-.8 0L3.5 6.37ZM16.1 5.5H3.9L10 9.56l6.1-4.06Z" },
+};
+
+/** Links set in Nadcab Console replace the default Nadcab socials. */
+function footerSocials(settings) {
+  const custom = [
+    settings.website && { label: "Website", href: settings.website, path: SOCIALS[1].path },
+    settings.twitter && { ...BRAND_ICONS.twitter, href: settings.twitter },
+    settings.telegram && { ...BRAND_ICONS.telegram, href: settings.telegram },
+    settings.discord && { ...BRAND_ICONS.discord, href: settings.discord },
+    settings.github && { label: "GitHub", href: settings.github, path: SOCIALS[0].path },
+    settings.email && { ...BRAND_ICONS.email, href: `mailto:${settings.email}` },
+  ].filter(Boolean);
+  return custom.length ? custom : SOCIALS;
+}
+
 function FooterLink({ link }) {
   const cls = "inline-flex items-center gap-1 text-xs text-ink transition-colors hover:text-brand-600";
   if (!link.external) {
@@ -88,13 +109,14 @@ export default function Footer() {
   }
   const syncing = status && status.head != null && status.indexed < status.head - 2;
   const year = new Date().getUTCFullYear();
+  const settings = getSettings();
 
   return (
     <footer className="mt-16 border-t border-line bg-surface">
       <div className="mx-auto max-w-[1320px] px-4 sm:px-6">
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-line py-5">
           <div className="flex items-center gap-2">
-            {SOCIALS.map((social) => (
+            {footerSocials(settings).map((social) => (
               <a
                 key={social.label}
                 href={social.href}
@@ -104,7 +126,7 @@ export default function Footer() {
                 title={social.label}
                 className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-canvas text-muted transition-colors hover:bg-brand-50 hover:text-brand-600"
               >
-                <svg viewBox="0 0 20 20" className="h-4 w-4" aria-hidden="true">
+                <svg viewBox={social.viewBox || "0 0 20 20"} className="h-4 w-4" aria-hidden="true">
                   <path fill="currentColor" d={social.path} />
                 </svg>
               </a>
@@ -120,8 +142,8 @@ export default function Footer() {
               <span className="text-base font-medium text-ink">Powered by {config.chainName}</span>
             </div>
             <p className="mt-3 text-xs leading-5 text-muted">
-              {config.chainName} Explorer is a Block Explorer and Analytics Platform for {config.chainName}
-              {config.chainId ? ` (Chain ID ${config.chainId})` : ""}, an EVM-compatible network built with Nadcab Labs.
+              {settings.footerAbout || <>{config.chainName} Explorer is a Block Explorer and Analytics Platform for {config.chainName}
+              {config.chainId ? ` (Chain ID ${config.chainId})` : ""}, an EVM-compatible network built with Nadcab Labs.</>}
             </p>
             <div className="mt-5">
               <AddNetworkButton chainId={config.chainId} chainName={config.chainName} currency={config.currency} currencyName={config.currencyName} rpcUrl={config.publicRpcUrl} />
@@ -143,12 +165,16 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-col gap-2 border-t border-line py-5 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
-          <p>
-            {config.chainName} Explorer © {year} · Built by{" "}
-            <a href="https://www.nadcab.com" target="_blank" rel="noopener noreferrer">
-              Nadcab Labs
-            </a>
-          </p>
+          {settings.copyright ? (
+            <p>{settings.copyright}</p>
+          ) : (
+            <p>
+              {config.chainName} Explorer © {year} · Built by{" "}
+              <a href="https://www.nadcab.com" target="_blank" rel="noopener noreferrer">
+                Nadcab Labs
+              </a>
+            </p>
+          )}
           {status && (
             <p className="inline-flex items-center gap-2">
               <span className={`h-2 w-2 rounded-full ${syncing ? "bg-amber-500" : "bg-emerald-500"}`} aria-hidden="true" />
