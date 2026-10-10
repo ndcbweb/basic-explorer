@@ -1,0 +1,27 @@
+{
+  "name": "basic-explorer",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Nadcab block explorer for EVM chains (Next.js + Tailwind, reads directly from a geth archive node).",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "bundle": "sh scripts/bundle.sh"
+  },
+  "dependencies": {
+    "next": "^15.5.27",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "viem": "^2.57.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "postcss": "^8.5.29",
+    "tailwindcss": "^4.3.3"
+  }
+}
