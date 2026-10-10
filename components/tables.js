@@ -199,3 +199,56 @@ export function TransferTable({ transfers, viewer = null, showToken = true }) {
     </div>
   );
 }
+
+export function InternalTxTable({ rows, showParent = true }) {
+  if (!rows.length) {
+    return <EmptyState title="No internal transactions" body="Value transfers and contract creations made by contracts during execution appear here." />;
+  }
+  return (
+    <div className="table-wrap">
+      <table className="data-table">
+        <thead>
+          <tr>
+            {showParent && <th scope="col">Parent Txn Hash</th>}
+            <th scope="col">Block</th>
+            <th scope="col">Age</th>
+            <th scope="col">Type</th>
+            <th scope="col">From</th>
+            <th scope="col">To</th>
+            <th scope="col" className="text-right">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row) => (
+            <tr key={`${row.tx_hash}-${row.idx}`}>
+              {showParent && (
+                <td>
+                  <TxLink hash={row.tx_hash} />
+                </td>
+              )}
+              <td>
+                <BlockLink number={row.block_number} />
+              </td>
+              <td className="text-muted">{timeAgo(row.timestamp)}</td>
+              <td>
+                <span className={`chip ${row.error ? "text-bad-700" : ""}`} title={row.error || undefined}>
+                  {row.call_type.toLowerCase()}
+                  {row.error ? " (failed)" : ""}
+                </span>
+              </td>
+              <td>
+                <AddressLink address={row.from_addr} />
+              </td>
+              <td>
+                <AddressLink address={row.to_addr} />
+              </td>
+              <td className="text-right tabular-nums">
+                {formatAmount(row.value)} <span className="text-muted">{config.currency}</span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}

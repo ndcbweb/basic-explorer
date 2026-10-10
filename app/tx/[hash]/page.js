@@ -4,8 +4,9 @@ import { decodeFunctionData, erc20Abi } from "viem";
 import CopyButton from "@/components/CopyButton";
 import { AddressLink, Container, DetailList, DetailRow, EmptyState, PageHeader, StatusBadge, Tabs, TokenLink } from "@/components/ui";
 import { config } from "@/lib/config";
-import { formatAmount, formatDate, formatNumber, isHash, methodLabel, timeAgo } from "@/lib/format";
-import { tokenTransfers } from "@/lib/queries";
+import { InternalTxTable } from "@/components/tables";
+import { decodeIdm, formatAmount, formatDate, formatNumber, isHash, methodLabel, timeAgo } from "@/lib/format";
+import { tokenTransfers, txInternalCalls } from "@/lib/queries";
 import { rpc, safeRpc } from "@/lib/rpc";
 
 export async function generateMetadata({ params }) {
@@ -54,20 +55,32 @@ export default async function TxPage({ params, searchParams }) {
   const logs = receipt?.logs || [];
   const decoded = decodeInput(tx.input);
   const base = `/tx/${hash}`;
+  const internal = txInternalCalls(hash.toLowerCase());
+  const message = tx.to ? decodeIdm(tx.input) : null;
+  const activeTab = ["logs", "internal"].includes(tab) ? tab : "overview";
 
   return (
     <Container>
       <PageHeader title="Transaction Details" />
       <Tabs
         basePath={base}
-        active={tab === "logs" ? "logs" : "overview"}
+        active={activeTab}
         tabs={[
           { id: "overview", label: "Overview" },
+          ...(internal.length ? [{ id: "internal", label: "Internal Txns", count: internal.length }] : []),
           { id: "logs", label: "Logs", count: logs.length },
         ]}
       />
 
-      {tab === "logs" ? (
+      {activeTab === "internal" ? (
+        <section className="card overflow-hidden">
+          <div className="card-head">
+            <h2 className="card-title">Internal Transactions</h2>
+            <span className="text-xs text-muted">Value transfers and creations made by contracts during this call</span>
+          </div>
+          <InternalTxTable rows={internal} showParent={false} />
+        </section>
+      ) : activeTab === "logs" ? (
         <section className="card">
           <div className="card-head">
             <h2 className="card-title">Transaction Receipt Event Logs</h2>
@@ -253,6 +266,12 @@ export default async function TxPage({ params, searchParams }) {
                         ))}
                       </tbody>
                     </table>
+                  </div>
+                )}
+                {message && (
+                  <div className="rounded-md border border-brand-100 bg-brand-50 p-3 text-sm">
+                    <p className="mb-1 text-xs font-medium text-brand-600">Input Data Message (UTF-8)</p>
+                    <p className="break-words whitespace-pre-wrap text-ink">{message}</p>
                   </div>
                 )}
                 <pre className="mono max-h-56 overflow-auto rounded-md border border-line bg-canvas p-3 break-all whitespace-pre-wrap text-muted">
