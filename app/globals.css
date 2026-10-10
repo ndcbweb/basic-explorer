@@ -1,23 +1,23 @@
 @import "tailwindcss";
 
 @theme {
-  /* Etherscan's type system: Roboto 400/500/700 on a 14.5px body, system monospace for code. */
+  /* Etherscan's type system (Roboto 400/500/700, system monospace), rounded to whole pixels so text stays crisp on 1x screens. */
   --font-sans: var(--font-roboto), system-ui, -apple-system, "Segoe UI", "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif;
   --font-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
-  --text-xs: 0.78515625rem;
+  --text-xs: 0.8125rem;
   --text-xs--line-height: 1.5;
-  --text-sm: 0.90625rem;
+  --text-sm: 0.875rem;
   --text-sm--line-height: 1.5;
   --text-base: 0.9375rem;
   --text-base--line-height: 1.5;
-  --text-lg: 1.171875rem;
+  --text-lg: 1.125rem;
   --text-lg--line-height: 1.2;
-  --text-xl: 1.23046875rem;
+  --text-xl: 1.25rem;
   --text-xl--line-height: 1.2;
-  --text-2xl: 1.40625rem;
+  --text-2xl: 1.375rem;
   --text-2xl--line-height: 1.2;
-  --text-3xl: 1.640625rem;
+  --text-3xl: 1.625rem;
   --text-3xl--line-height: 1.2;
 
   /* Roboto ships 500 as its heading weight; Etherscan uses it where other UIs use semibold. */
@@ -82,7 +82,8 @@
     -webkit-font-smoothing: antialiased;
   }
   body {
-    @apply bg-canvas text-ink font-sans text-sm font-normal;
+    @apply bg-canvas text-ink font-sans text-sm font-normal antialiased;
+    text-rendering: optimizeLegibility;
   }
   a {
     @apply text-brand-600 hover:text-brand-700;

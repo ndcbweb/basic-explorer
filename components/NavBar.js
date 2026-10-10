@@ -200,7 +200,7 @@ function useDismiss(open, setOpen, ref) {
 }
 
 const PANEL = "rounded-xl border border-line border-t-2 border-t-brand-500 bg-surface shadow-[0_12px_32px_-12px_rgba(10,16,32,0.25)]";
-const ITEM = "flex items-center rounded-md px-3 py-1.5 text-[0.8203125rem] text-ink hover:bg-canvas hover:text-brand-600";
+const ITEM = "flex items-center rounded-md px-3 py-1.5 text-[13px] text-ink hover:bg-canvas hover:text-brand-600";
 
 function Dropdown({ entry, active }) {
   const [open, setOpen] = useState(false);
@@ -319,7 +319,7 @@ export default function NavBar() {
                 </summary>
                 <div className="pb-2">
                   {flatItems(entry).map((item) => (
-                    <MenuLink key={item.label} item={item} className="flex items-center rounded-md px-3 py-2 text-[0.8203125rem] text-ink hover:bg-canvas" />
+                    <MenuLink key={item.label} item={item} className="flex items-center rounded-md px-3 py-2 text-[13px] text-ink hover:bg-canvas" />
                   ))}
                 </div>
               </details>
