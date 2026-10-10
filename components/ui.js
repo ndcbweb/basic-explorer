@@ -117,9 +117,9 @@ export function DetailRow({ label, hint, children }) {
   );
 }
 
-export function EmptyState({ title, body }) {
+export function EmptyState({ title, body, className = "" }) {
   return (
-    <div className="flex flex-col items-center justify-center px-6 py-14 text-center">
+    <div className={`flex flex-col items-center justify-center px-6 py-14 text-center ${className}`}>
       <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-full bg-canvas text-faint">
         <svg viewBox="0 0 20 20" className="h-5 w-5" aria-hidden="true">
           <path

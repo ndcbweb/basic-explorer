@@ -90,12 +90,12 @@ export default async function HomePage() {
         </section>
 
         <div className="mt-6 grid gap-6 lg:grid-cols-2">
-          <section className="card overflow-hidden" aria-labelledby="latest-blocks">
+          <section className="card flex flex-col overflow-hidden" aria-labelledby="latest-blocks">
             <div className="card-head">
               <h2 id="latest-blocks" className="card-title">Latest Blocks</h2>
             </div>
             {blocks.length ? (
-              <ul className="divide-y divide-line">
+              <ul className="flex-1 divide-y divide-line">
                 {blocks.map((block) => (
                   <li key={block.number} className="flex items-center gap-4 px-5 py-3.5">
                     <div className="hidden h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-canvas text-muted sm:flex" aria-hidden="true">
@@ -123,19 +123,19 @@ export default async function HomePage() {
                 ))}
               </ul>
             ) : (
-              <EmptyState title="Waiting for blocks" body="The indexer is syncing with the chain." />
+              <EmptyState className="flex-1" title="Waiting for blocks" body="The indexer is syncing with the chain." />
             )}
-            <Link href="/blocks" className="block border-t border-line bg-[#fafbfc] py-3 text-center text-xs font-semibold tracking-wide uppercase hover:bg-brand-50">
+            <Link href="/blocks" className="mt-auto block border-t border-line bg-[#fafbfc] py-3 text-center text-xs font-semibold tracking-wide uppercase hover:bg-brand-50">
               View all blocks →
             </Link>
           </section>
 
-          <section className="card overflow-hidden" aria-labelledby="latest-txs">
+          <section className="card flex flex-col overflow-hidden" aria-labelledby="latest-txs">
             <div className="card-head">
               <h2 id="latest-txs" className="card-title">Latest Transactions</h2>
             </div>
             {txs.length ? (
-              <ul className="divide-y divide-line">
+              <ul className="flex-1 divide-y divide-line">
                 {txs.map((tx) => (
                   <li key={tx.hash} className="flex items-center gap-4 px-5 py-3.5">
                     <div className="hidden h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-canvas text-muted sm:flex" aria-hidden="true">
@@ -162,9 +162,9 @@ export default async function HomePage() {
                 ))}
               </ul>
             ) : (
-              <EmptyState title="No transactions yet" body="Send a transaction to the RPC endpoint and it will appear here within a few seconds." />
+              <EmptyState className="flex-1" title="No transactions yet" body="Send a transaction to the RPC endpoint and it will appear here within a few seconds." />
             )}
-            <Link href="/txs" className="block border-t border-line bg-[#fafbfc] py-3 text-center text-xs font-semibold tracking-wide uppercase hover:bg-brand-50">
+            <Link href="/txs" className="mt-auto block border-t border-line bg-[#fafbfc] py-3 text-center text-xs font-semibold tracking-wide uppercase hover:bg-brand-50">
               View all transactions →
             </Link>
           </section>
