@@ -1,8 +1,29 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, monospace;
+  /* Etherscan's type system: Roboto 400/500/700 on a 14.5px body, system monospace for code. */
+  --font-sans: var(--font-roboto), system-ui, -apple-system, "Segoe UI", "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif;
+  --font-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  --text-xs: 0.78515625rem;
+  --text-xs--line-height: 1.5;
+  --text-sm: 0.90625rem;
+  --text-sm--line-height: 1.5;
+  --text-base: 0.9375rem;
+  --text-base--line-height: 1.5;
+  --text-lg: 1.171875rem;
+  --text-lg--line-height: 1.2;
+  --text-xl: 1.23046875rem;
+  --text-xl--line-height: 1.2;
+  --text-2xl: 1.40625rem;
+  --text-2xl--line-height: 1.2;
+  --text-3xl: 1.640625rem;
+  --text-3xl--line-height: 1.2;
+
+  /* Roboto ships 500 as its heading weight; Etherscan uses it where other UIs use semibold. */
+  --font-weight-semibold: 500;
+  --tracking-tight: 0;
+  --tracking-wide: 0.03125rem;
 
   --color-canvas: #f5f6f8;
   --color-surface: #ffffff;
@@ -61,7 +82,7 @@
     -webkit-font-smoothing: antialiased;
   }
   body {
-    @apply bg-canvas text-ink font-sans text-[15px] leading-6;
+    @apply bg-canvas text-ink font-sans text-sm font-normal;
   }
   a {
     @apply text-brand-600 hover:text-brand-700;
@@ -79,7 +100,7 @@
     @apply flex items-center justify-between gap-4 border-b border-line px-5 py-3.5;
   }
   .card-title {
-    @apply text-[15px] font-semibold text-ink;
+    @apply text-base font-medium text-ink;
   }
   .table-wrap {
     @apply overflow-x-auto;
@@ -88,10 +109,10 @@
     @apply w-full text-left text-sm;
   }
   .data-table thead th {
-    @apply border-b border-line bg-subtle px-5 py-3 text-xs font-semibold tracking-wide whitespace-nowrap text-muted uppercase;
+    @apply border-b border-line bg-subtle px-4 py-2.5 text-xs font-bold whitespace-nowrap text-ink;
   }
   .data-table tbody td {
-    @apply border-b border-line px-5 py-3.5 align-middle whitespace-nowrap;
+    @apply border-b border-line px-4 py-2.5 align-middle whitespace-nowrap;
   }
   .data-table tbody tr:last-child td {
     @apply border-b-0;
@@ -103,16 +124,20 @@
     @apply inline-flex items-center gap-1 rounded-md border border-line bg-subtle px-2 py-0.5 text-xs font-medium text-muted;
   }
   .mono {
-    @apply font-mono text-[13px];
+    @apply font-mono text-xs;
+  }
+  /* Small uppercase label, Etherscan's .text-cap */
+  .text-cap {
+    @apply text-[0.75rem] font-normal tracking-wide text-muted uppercase;
   }
   .doc {
-    @apply text-[15px] leading-7 text-ink;
+    @apply text-sm leading-6 text-ink;
   }
   .doc h2 {
-    @apply mt-9 mb-3 scroll-mt-28 text-lg font-semibold tracking-tight first:mt-0;
+    @apply mt-9 mb-3 scroll-mt-28 text-lg font-medium first:mt-0;
   }
   .doc h3 {
-    @apply mt-6 mb-2 text-[15px] font-semibold;
+    @apply mt-6 mb-2 text-base font-medium;
   }
   .doc p {
     @apply mb-4 text-muted;
@@ -127,18 +152,18 @@
     @apply font-semibold text-ink;
   }
   .doc code {
-    @apply rounded bg-subtle px-1.5 py-0.5 font-mono text-[13px] text-ink;
+    @apply rounded bg-subtle px-1.5 py-0.5 font-mono text-xs text-ink;
   }
   .doc pre {
-    @apply mb-4 overflow-x-auto rounded-lg border border-line bg-subtle p-4 font-mono text-[13px] leading-6 text-ink;
+    @apply mb-4 overflow-x-auto rounded-lg border border-line bg-subtle p-4 font-mono text-xs leading-6 text-ink;
   }
   .doc pre code {
     @apply bg-transparent p-0;
   }
   .field {
-    @apply w-full rounded-lg border border-line bg-surface px-3 py-2.5 text-sm text-ink placeholder:text-faint focus:border-brand-500 focus:ring-4 focus:ring-brand-100 focus:outline-none;
+    @apply w-full rounded-lg border border-line bg-surface px-2.5 py-1.5 text-sm text-ink placeholder:text-faint focus:border-brand-500 focus:ring-4 focus:ring-brand-100 focus:outline-none;
   }
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-brand-600 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-brand-700 hover:text-white disabled:cursor-not-allowed disabled:opacity-60;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-brand-600 px-3 py-1.5 text-sm font-normal text-white transition-colors hover:bg-brand-700 hover:text-white disabled:cursor-not-allowed disabled:opacity-60;
   }
 }

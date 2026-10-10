@@ -33,7 +33,7 @@ export default function TxChart({ points }) {
 
   return (
     <figure>
-      <figcaption className="text-xs font-medium tracking-wide text-muted uppercase">Transaction history in 14 days</figcaption>
+      <figcaption className="text-cap">Transaction history in 14 days</figcaption>
       <div className="mt-2 grid grid-cols-[auto_1fr] gap-x-2">
         <div className="flex h-20 flex-col justify-between py-0.5 text-right text-[11px] text-muted tabular-nums">
           <span>{compactNumber(max)}</span>

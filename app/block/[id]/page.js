@@ -98,21 +98,21 @@ export default async function BlockPage({ params }) {
           <DetailRow label="Size">{block.size ? `${formatNumber(BigInt(block.size))} bytes` : "—"}</DetailRow>
           <DetailRow label="Hash">
             <span className="inline-flex items-center gap-1">
-              <span className="mono break-all">{block.hash}</span>
+              <span className="break-all">{block.hash}</span>
               <CopyButton value={block.hash} label="Copy block hash" />
             </span>
           </DetailRow>
           <DetailRow label="Parent Hash">
             {number > 0 ? (
-              <Link href={`/block/${number - 1}`} className="mono break-all">
+              <Link href={`/block/${number - 1}`} className="break-all">
                 {block.parentHash}
               </Link>
             ) : (
-              <span className="mono break-all">{block.parentHash}</span>
+              <span className="break-all">{block.parentHash}</span>
             )}
           </DetailRow>
           <DetailRow label="State Root">
-            <span className="mono break-all">{block.stateRoot}</span>
+            <span className="break-all">{block.stateRoot}</span>
           </DetailRow>
           <DetailRow label="Extra Data">
             <span className="mono block max-h-24 overflow-auto break-all text-muted">{block.extraData}</span>

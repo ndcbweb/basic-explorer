@@ -6,7 +6,7 @@ export function PageHeader({ title, subtitle, children }) {
   return (
     <div className="mb-5 flex flex-col gap-2 border-b border-line pb-4 sm:flex-row sm:items-end sm:justify-between">
       <div className="min-w-0">
-        <h1 className="text-xl font-semibold tracking-tight text-ink">{title}</h1>
+        <h1 className="text-lg font-medium text-ink">{title}</h1>
         {subtitle && <div className="mt-1 text-sm break-all text-muted">{subtitle}</div>}
       </div>
       {children}
@@ -22,7 +22,7 @@ export function AddressLink({ address, label, full = false, copy = false, head =
   if (!address) return <span className="text-faint">—</span>;
   return (
     <span className="inline-flex items-center gap-1">
-      <Link href={`/address/${address}`} className="mono" title={address}>
+      <Link href={`/address/${address}`} title={address}>
         {label || (full ? address : shortHash(address, head, tail))}
       </Link>
       {copy && <CopyButton value={address} label="Copy address" />}
@@ -33,7 +33,7 @@ export function AddressLink({ address, label, full = false, copy = false, head =
 export function TxLink({ hash, full = false, copy = false }) {
   return (
     <span className="inline-flex items-center gap-1">
-      <Link href={`/tx/${hash}`} className="mono" title={hash}>
+      <Link href={`/tx/${hash}`} title={hash}>
         {full ? hash : shortHash(hash, 10, 6)}
       </Link>
       {copy && <CopyButton value={hash} label="Copy transaction hash" />}

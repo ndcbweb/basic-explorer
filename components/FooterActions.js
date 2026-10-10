@@ -36,7 +36,7 @@ export function AddNetworkButton({ chainId, chainName, currency }) {
     <button
       type="button"
       onClick={add}
-      className="inline-flex items-center gap-2 rounded-lg border border-line bg-surface px-3 py-1.5 text-sm font-medium text-ink transition-colors hover:border-brand-100 hover:bg-brand-50 hover:text-brand-600"
+      className="inline-flex items-center gap-2 rounded-lg border border-line bg-surface px-3 py-1.5 text-xs font-normal text-ink transition-colors hover:border-brand-100 hover:bg-brand-50 hover:text-brand-600"
     >
       <svg viewBox="0 0 20 20" className="h-4 w-4 text-brand-600" aria-hidden="true">
         <path
@@ -54,7 +54,7 @@ export function BackToTop() {
     <button
       type="button"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      className="inline-flex items-center gap-1.5 text-sm text-ink transition-colors hover:text-brand-600"
+      className="inline-flex items-center gap-1.5 text-xs text-ink transition-colors hover:text-brand-600"
     >
       <svg viewBox="0 0 20 20" className="h-4 w-4" aria-hidden="true">
         <path fill="currentColor" d="M4 3.25a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H4.75A.75.75 0 0 1 4 3.25Zm5.47 2.47a.75.75 0 0 1 1.06 0l4 4a.75.75 0 1 1-1.06 1.06l-2.72-2.72v8.69a.75.75 0 0 1-1.5 0V8.06l-2.72 2.72a.75.75 0 0 1-1.06-1.06l4-4Z" />

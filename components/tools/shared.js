@@ -33,7 +33,7 @@ export function BetaBadge() {
 
 export function OutputBox({ children, className = "" }) {
   return (
-    <pre className={`max-h-96 overflow-auto rounded-lg border border-line bg-subtle p-4 font-mono text-[13px] leading-6 break-all whitespace-pre-wrap text-ink ${className}`}>
+    <pre className={`max-h-96 overflow-auto rounded-lg border border-line bg-subtle p-4 font-mono text-xs leading-6 break-all whitespace-pre-wrap text-ink ${className}`}>
       {children}
     </pre>
   );

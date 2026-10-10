@@ -41,7 +41,7 @@ export default function PushTxForm() {
         rows={7}
         spellCheck={false}
         placeholder="0xf86c808504a817c800825208..."
-        className="field font-mono text-[13px]"
+        className="field font-mono text-xs"
       />
       <div className="flex flex-wrap items-center gap-3">
         <button type="submit" className="btn-primary" disabled={state.status === "sending"}>

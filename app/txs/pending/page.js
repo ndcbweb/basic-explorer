@@ -77,7 +77,7 @@ export default async function PendingTxsPage({ searchParams }) {
                 {rows.map((tx) => (
                   <tr key={tx.hash}>
                     <td>
-                      <span className="mono text-ink" title={tx.hash}>
+                      <span className="text-ink" title={tx.hash}>
                         {shortHash(tx.hash, 10, 6)}
                       </span>
                     </td>

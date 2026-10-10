@@ -33,7 +33,7 @@ export default async function TokenPage({ params, searchParams }) {
     <Container>
       <div className="mb-5 flex flex-col gap-1 border-b border-line pb-4">
         <div className="flex flex-wrap items-center gap-2">
-          <h1 className="text-xl font-semibold tracking-tight">
+          <h1 className="text-lg font-medium">
             Token <span className="text-muted">{token.name || "Unnamed token"}</span>
           </h1>
           <span className="chip">{token.token_type}</span>

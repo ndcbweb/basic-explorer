@@ -39,7 +39,7 @@ export function IdmSendForm({ chainId }) {
           onChange={(event) => setTo(event.target.value)}
           spellCheck={false}
           placeholder="0x…"
-          className="field font-mono text-[13px]"
+          className="field font-mono text-xs"
         />
       </div>
       <div>
@@ -94,7 +94,7 @@ export function IdmDecodeForm() {
           onChange={(event) => setHash(event.target.value)}
           spellCheck={false}
           placeholder="0x…"
-          className="field font-mono text-[13px]"
+          className="field font-mono text-xs"
         />
       </div>
       <button type="submit" className="btn-primary" disabled={state.status === "loading"}>
@@ -104,7 +104,7 @@ export function IdmDecodeForm() {
       {state.status === "done" && (
         <div className="space-y-2">
           <p className="text-sm text-muted">
-            From <span className="mono text-ink">{state.tx.from}</span> to <span className="mono text-ink">{state.tx.to || "contract creation"}</span>
+            From <span className="text-ink">{state.tx.from}</span> to <span className="text-ink">{state.tx.to || "contract creation"}</span>
           </p>
           <OutputBox>{state.tx.input === "0x" ? "This transaction has no input data." : state.text || "—"}</OutputBox>
         </div>

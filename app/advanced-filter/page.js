@@ -94,7 +94,7 @@ function buildWhere(f) {
 function Field({ label, htmlFor, children }) {
   return (
     <div>
-      <label htmlFor={htmlFor} className="mb-1.5 block text-xs font-semibold tracking-wide text-muted uppercase">
+      <label htmlFor={htmlFor} className="mb-1.5 block text-cap">
         {label}
       </label>
       {children}
@@ -136,7 +136,7 @@ export default async function AdvancedFilterPage({ searchParams }) {
                   <option value="from">From</option>
                   <option value="to">To</option>
                 </select>
-                <input id="af-a" name="a" defaultValue={f.a || ""} placeholder="0x…" spellCheck={false} className="field font-mono text-[13px]" />
+                <input id="af-a" name="a" defaultValue={f.a || ""} placeholder="0x…" spellCheck={false} className="field font-mono text-xs" />
               </div>
             </Field>
           </div>

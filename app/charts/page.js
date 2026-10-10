@@ -64,7 +64,7 @@ export default function ChartsPage() {
       <section className="card mb-6 grid grid-cols-2 divide-line md:grid-cols-3 lg:grid-cols-6 lg:divide-x">
         {summary.map((item) => (
           <div key={item.label} className="px-5 py-4">
-            <p className="text-xs font-medium tracking-wide text-muted uppercase">{item.label}</p>
+            <p className="text-cap">{item.label}</p>
             <p className="mt-1 text-lg font-semibold text-ink tabular-nums">{item.value}</p>
           </div>
         ))}

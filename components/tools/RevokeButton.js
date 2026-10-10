@@ -37,7 +37,7 @@ export default function RevokeButton({ owner, token, spender, kind, tokenId, cha
 
   if (state.status === "sent") {
     return (
-      <Link href={`/tx/${state.hash}`} className="mono text-ok-700">
+      <Link href={`/tx/${state.hash}`} className="text-ok-700">
         Sent {shortHash(state.hash, 8, 4)}
       </Link>
     );

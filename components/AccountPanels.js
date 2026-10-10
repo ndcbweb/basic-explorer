@@ -72,7 +72,7 @@ function RemoveButton({ onClick, disabled, label }) {
 function AddressCell({ address }) {
   return (
     <span className="inline-flex items-center gap-1">
-      <Link href={`/address/${address}`} className="mono">
+      <Link href={`/address/${address}`}>
         {address}
       </Link>
       <CopyButton value={address} label="Copy address" />
@@ -137,7 +137,7 @@ export function WatchlistPanel({ items, limit, currency }) {
           placeholder="Address (0x…)"
           aria-label="Address to watch"
           spellCheck={false}
-          className="field font-mono text-[13px]"
+          className="field font-mono text-xs"
         />
         <input
           value={note}
@@ -239,7 +239,7 @@ export function TagsPanel({ items, limit }) {
           placeholder="Address (0x…)"
           aria-label="Address"
           spellCheck={false}
-          className="field font-mono text-[13px]"
+          className="field font-mono text-xs"
         />
         <input
           value={tag}

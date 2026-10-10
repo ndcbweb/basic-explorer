@@ -52,7 +52,7 @@ export default async function TokenApprovalsPage({ searchParams }) {
               defaultValue={address}
               placeholder="Search by address (0x…)"
               spellCheck={false}
-              className="field font-mono text-[13px]"
+              className="field font-mono text-xs"
             />
             <button type="submit" className="btn-primary shrink-0">
               Check Approvals
@@ -70,7 +70,7 @@ export default async function TokenApprovalsPage({ searchParams }) {
               <div className="card-head">
                 <p className="text-sm text-muted">
                   {formatNumber(result.approvals.length)} active approval{result.approvals.length === 1 ? "" : "s"} for{" "}
-                  <Link href={`/address/${result.owner}`} className="mono">
+                  <Link href={`/address/${result.owner}`} >
                     {result.owner}
                   </Link>
                   {result.revoked > 0 && ` · ${formatNumber(result.revoked)} revoked or used up`}

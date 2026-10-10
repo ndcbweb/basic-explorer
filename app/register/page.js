@@ -17,7 +17,7 @@ export default async function RegisterPage({ searchParams }) {
   return (
     <Container className="flex justify-center py-12">
       <section className="card w-full max-w-[480px] p-6 sm:p-8">
-        <h1 className="text-2xl font-semibold tracking-tight text-ink">Register a New Account</h1>
+        <h1 className="text-xl font-medium text-ink">Register a New Account</h1>
         <p className="mt-1.5 mb-6 text-sm text-muted">
           Fill out the form to get started. Already have an account? <Link href={loginHref}>Sign In</Link>
         </p>

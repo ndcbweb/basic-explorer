@@ -8,7 +8,7 @@ export default function LostPasswordPage() {
   return (
     <Container className="flex justify-center py-12">
       <section className="card w-full max-w-[480px] p-6 sm:p-8">
-        <h1 className="text-2xl font-semibold tracking-tight text-ink">Forgot Password</h1>
+        <h1 className="text-xl font-medium text-ink">Forgot Password</h1>
         <p className="mt-1.5 mb-6 text-sm text-muted">
           Remembered it? <Link href="/login">Back to Sign In</Link>
         </p>

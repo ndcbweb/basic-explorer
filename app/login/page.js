@@ -17,7 +17,7 @@ export default async function LoginPage({ searchParams }) {
   return (
     <Container className="flex justify-center py-12">
       <section className="card w-full max-w-[480px] p-6 sm:p-8">
-        <h1 className="text-2xl font-semibold tracking-tight text-ink">Sign In</h1>
+        <h1 className="text-xl font-medium text-ink">Sign In</h1>
         <p className="mt-1.5 mb-6 text-sm text-muted">
           Don&apos;t have an account? <Link href={registerHref}>Sign Up</Link>
         </p>

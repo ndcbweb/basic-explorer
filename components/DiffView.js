@@ -49,7 +49,7 @@ export default function DiffView({ rows: allRows, leftLabel = "A", rightLabel = 
         <p className="px-5 py-6 text-sm text-muted">Both inputs are identical.</p>
       ) : (
         <div className="max-h-[720px] overflow-auto">
-          <table className="mono w-full border-collapse text-[12.5px] leading-relaxed">
+          <table className="mono w-full border-collapse text-xs leading-relaxed">
             <tbody>
               {rows.map((row, i) => (
                 <tr key={i} className={ROW[row.type].cls}>

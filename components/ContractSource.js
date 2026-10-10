@@ -13,7 +13,7 @@ export function CodeBlock({ title, value, copy = true, maxHeight = "max-h-[420px
         </div>
       )}
       <pre
-        className={`mono ${maxHeight} overflow-auto rounded-md border border-line bg-canvas p-3 text-[12.5px] leading-relaxed ${
+        className={`mono ${maxHeight} overflow-auto rounded-md border border-line bg-canvas p-3 text-xs leading-relaxed ${
           muted ? "break-all whitespace-pre-wrap text-muted" : "whitespace-pre text-ink"
         }`}
       >

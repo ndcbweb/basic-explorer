@@ -61,7 +61,7 @@ const SOCIALS = [
 ];
 
 function FooterLink({ link }) {
-  const cls = "inline-flex items-center gap-1 text-sm text-ink transition-colors hover:text-brand-600";
+  const cls = "inline-flex items-center gap-1 text-xs text-ink transition-colors hover:text-brand-600";
   if (!link.external) {
     return (
       <Link href={link.href} className={cls}>
@@ -117,9 +117,9 @@ export default function Footer() {
           <div className="max-w-sm">
             <div className="flex items-center gap-2.5">
               <Logo className="h-7 w-7" />
-              <span className="text-base font-semibold text-ink">Powered by {config.chainName}</span>
+              <span className="text-base font-medium text-ink">Powered by {config.chainName}</span>
             </div>
-            <p className="mt-3 text-sm leading-6 text-muted">
+            <p className="mt-3 text-xs leading-5 text-muted">
               {config.chainName} Explorer is a Block Explorer and Analytics Platform for {config.chainName}
               {config.chainId ? ` (Chain ID ${config.chainId})` : ""}, an EVM-compatible network built with Nadcab Labs.
             </p>
@@ -130,7 +130,7 @@ export default function Footer() {
 
           {COLUMNS.map((column) => (
             <nav key={column.title} aria-label={column.title}>
-              <h2 className="text-sm font-semibold text-ink">{column.title}</h2>
+              <h2 className="text-sm font-medium text-ink">{column.title}</h2>
               <ul className="mt-4 space-y-2.5">
                 {column.links.map((link) => (
                   <li key={link.label}>
@@ -142,7 +142,7 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="flex flex-col gap-2 border-t border-line py-5 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-2 border-t border-line py-5 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
           <p>
             {config.chainName} Explorer © {year} · Built by{" "}
             <a href="https://www.nadcab.com" target="_blank" rel="noopener noreferrer">

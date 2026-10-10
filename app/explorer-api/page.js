@@ -20,8 +20,8 @@ export default function ExplorerApiPage() {
         <div className="grid gap-6 p-8 md:grid-cols-[1.4fr_1fr] md:items-center">
           <div>
             <p className="text-sm font-medium text-brand-600">{config.chainName} Explorer API</p>
-            <h1 className="mt-2 text-3xl font-semibold tracking-tight text-ink">Build on {config.chainName} with a familiar API</h1>
-            <p className="mt-3 max-w-xl text-[15px] text-muted">
+            <h1 className="mt-2 text-3xl font-medium text-ink">Build on {config.chainName} with a familiar API</h1>
+            <p className="mt-3 max-w-xl text-sm text-muted">
               Query accounts, transactions, tokens and blocks with the same requests you already use for Etherscan. No API key required.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
@@ -33,7 +33,7 @@ export default function ExplorerApiPage() {
               </Link>
             </div>
           </div>
-          <pre className="overflow-x-auto rounded-xl border border-line bg-subtle p-4 font-mono text-[12px] leading-6 text-ink">
+          <pre className="overflow-x-auto rounded-xl border border-line bg-subtle p-4 font-mono text-xs leading-6 text-ink">
             {`GET /api?module=account
         &action=balance
         &address=0x…

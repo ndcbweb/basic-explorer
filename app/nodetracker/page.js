@@ -34,7 +34,7 @@ export default async function NodeTrackerPage() {
       <section className="card mb-6 grid grid-cols-2 lg:grid-cols-4 lg:divide-x lg:divide-line">
         {cards.map((card) => (
           <div key={card.label} className="px-5 py-4">
-            <p className="text-xs font-medium tracking-wide text-muted uppercase">{card.label}</p>
+            <p className="text-cap">{card.label}</p>
             <p className="mt-1 text-xl font-semibold text-ink tabular-nums">{card.value}</p>
           </div>
         ))}

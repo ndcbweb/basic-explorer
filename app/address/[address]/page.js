@@ -59,13 +59,13 @@ export default async function AddressPage({ params, searchParams }) {
     <Container>
       <div className="mb-5 flex flex-col gap-2 border-b border-line pb-4">
         <div className="flex flex-wrap items-center gap-2">
-          <h1 className="text-xl font-semibold tracking-tight">{isContract ? "Contract" : "Address"}</h1>
+          <h1 className="text-lg font-medium">{isContract ? "Contract" : "Address"}</h1>
           {validated > 0 && <span className="chip border-brand-100 bg-brand-50 text-brand-700">Validator</span>}
           {token && <span className="chip">{token.token_type}</span>}
           {verified && <span className="chip border-ok-700/25 bg-ok-50 text-ok-700">Source Code Verified</span>}
         </div>
         <p className="flex items-center gap-1 text-sm">
-          <span className="mono break-all text-ink">{address}</span>
+          <span className="break-all text-ink">{address}</span>
           <CopyButton value={address} label="Copy address" />
         </p>
       </div>

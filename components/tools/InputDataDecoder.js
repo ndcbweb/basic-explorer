@@ -72,7 +72,7 @@ export default function InputDataDecoder() {
             value={input}
             onChange={(event) => setInput(event.target.value)}
             placeholder="0xa9059cbb000000000000000000000000… or 0x<tx hash>"
-            className="field font-mono text-[13px]"
+            className="field font-mono text-xs"
           />
         </div>
         <div>
@@ -86,7 +86,7 @@ export default function InputDataDecoder() {
             value={abiText}
             onChange={(event) => setAbiText(event.target.value)}
             placeholder="transfer(address to, uint256 amount)"
-            className="field font-mono text-[13px]"
+            className="field font-mono text-xs"
           />
         </div>
         <button type="submit" className="btn-primary" disabled={state.status === "loading" || !input.trim()}>
@@ -101,7 +101,7 @@ export default function InputDataDecoder() {
           {state.tx && (
             <p className="text-sm text-muted">
               Loaded input of transaction{" "}
-              <Link href={`/tx/${state.tx.hash}`} className="mono break-all">
+              <Link href={`/tx/${state.tx.hash}`} className="break-all">
                 {state.tx.hash}
               </Link>
             </p>
@@ -109,7 +109,7 @@ export default function InputDataDecoder() {
 
           {state.fn && (
             <div className="overflow-hidden rounded-lg border border-line">
-              <div className="border-b border-line bg-subtle px-4 py-2.5 font-mono text-[13px] text-ink">
+              <div className="border-b border-line bg-subtle px-4 py-2.5 font-mono text-xs text-ink">
                 Function: {functionSignature(state.fn)} <span className="text-muted">({state.selector})</span>
               </div>
               <div className="table-wrap">

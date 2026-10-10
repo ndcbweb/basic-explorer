@@ -22,13 +22,13 @@ export default function DiffPasteForm() {
             <label htmlFor="diff-left" className="mb-1.5 block text-sm font-medium text-ink">
               Source A
             </label>
-            <textarea id="diff-left" value={left} onChange={(e) => setLeft(e.target.value)} rows={14} spellCheck={false} className="field font-mono text-[13px]" />
+            <textarea id="diff-left" value={left} onChange={(e) => setLeft(e.target.value)} rows={14} spellCheck={false} className="field font-mono text-xs" />
           </div>
           <div>
             <label htmlFor="diff-right" className="mb-1.5 block text-sm font-medium text-ink">
               Source B
             </label>
-            <textarea id="diff-right" value={right} onChange={(e) => setRight(e.target.value)} rows={14} spellCheck={false} className="field font-mono text-[13px]" />
+            <textarea id="diff-right" value={right} onChange={(e) => setRight(e.target.value)} rows={14} spellCheck={false} className="field font-mono text-xs" />
           </div>
         </div>
         <button type="submit" className="btn-primary" disabled={!left && !right}>

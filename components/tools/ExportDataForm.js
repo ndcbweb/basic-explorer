@@ -82,7 +82,7 @@ export default function ExportDataForm({ initialAddress = "", initialType = "txn
           onChange={(event) => setAddress(event.target.value)}
           spellCheck={false}
           placeholder="0x…"
-          className="field font-mono text-[13px]"
+          className="field font-mono text-xs"
         />
       </div>
 

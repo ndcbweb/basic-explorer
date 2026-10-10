@@ -71,7 +71,7 @@ export default async function SearchContractPage({ searchParams }) {
                       <p className="border-b border-line px-3 py-1 text-xs text-muted">
                         {row.snippet.file} · line {row.snippet.line}
                       </p>
-                      <pre className="mono overflow-x-auto px-3 py-2 text-[12.5px] leading-relaxed text-ink">
+                      <pre className="mono overflow-x-auto px-3 py-2 text-xs leading-relaxed text-ink">
                         {row.snippet.lines.map((line, i) => (
                           <div key={i}>
                             <span className="mr-3 inline-block w-8 text-right text-faint select-none">{row.snippet.startLine + i}</span>

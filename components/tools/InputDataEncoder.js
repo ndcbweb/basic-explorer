@@ -72,7 +72,7 @@ export default function InputDataEncoder() {
           value={abiText}
           onChange={(event) => changeAbi(event.target.value)}
           placeholder='transfer(address,uint256) or [{"type":"function","name":"transfer",...}]'
-          className="field font-mono text-[13px]"
+          className="field font-mono text-xs"
         />
         {parsed.error && <p className="mt-1.5 text-sm text-bad-700">{parsed.error}</p>}
       </div>
@@ -88,7 +88,7 @@ export default function InputDataEncoder() {
               setValues({});
               setResult(null);
             }}
-            className="field font-mono text-[13px]"
+            className="field font-mono text-xs"
           >
             {parsed.fns.map((item, i) => (
               <option key={`${functionSignature(item)}-${i}`} value={i}>
@@ -120,7 +120,7 @@ export default function InputDataEncoder() {
                     value={values[i] ?? ""}
                     onChange={(event) => setValues({ ...values, [i]: event.target.value })}
                     placeholder={placeholderFor(param)}
-                    className="field font-mono text-[13px]"
+                    className="field font-mono text-xs"
                   />
                 ) : (
                   <input
@@ -129,7 +129,7 @@ export default function InputDataEncoder() {
                     value={values[i] ?? ""}
                     onChange={(event) => setValues({ ...values, [i]: event.target.value })}
                     placeholder={placeholderFor(param)}
-                    className="field font-mono text-[13px]"
+                    className="field font-mono text-xs"
                   />
                 )}
               </div>

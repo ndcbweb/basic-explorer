@@ -36,7 +36,7 @@ async function withBalances(items) {
 function Stat({ label, value }) {
   return (
     <div>
-      <dt className="text-xs font-medium tracking-wide text-muted uppercase">{label}</dt>
+      <dt className="text-cap">{label}</dt>
       <dd className="mt-1 text-sm font-medium text-ink">{value}</dd>
     </div>
   );

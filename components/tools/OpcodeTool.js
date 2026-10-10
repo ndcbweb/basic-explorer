@@ -48,7 +48,7 @@ export default function OpcodeTool() {
             value={input}
             onChange={(event) => setInput(event.target.value)}
             placeholder="0x6080604052… or 0x<contract address>"
-            className="field font-mono text-[13px]"
+            className="field font-mono text-xs"
           />
         </div>
         <button type="submit" className="btn-primary" disabled={state.status === "loading" || !input.trim()}>

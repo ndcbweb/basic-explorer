@@ -53,7 +53,7 @@ export function TxTable({ txs, viewer = null, showBlock = true, emptyTitle = "No
               </td>
               <td>
                 {viewer === tx.from_addr ? (
-                  <span className="mono text-ink">{`${tx.from_addr.slice(0, 8)}…${tx.from_addr.slice(-6)}`}</span>
+                  <span className="text-ink">{`${tx.from_addr.slice(0, 8)}…${tx.from_addr.slice(-6)}`}</span>
                 ) : (
                   <AddressLink address={tx.from_addr} />
                 )}
@@ -66,7 +66,7 @@ export function TxTable({ txs, viewer = null, showBlock = true, emptyTitle = "No
               <td>
                 {tx.to_addr ? (
                   viewer === tx.to_addr ? (
-                    <span className="mono text-ink">{`${tx.to_addr.slice(0, 8)}…${tx.to_addr.slice(-6)}`}</span>
+                    <span className="text-ink">{`${tx.to_addr.slice(0, 8)}…${tx.to_addr.slice(-6)}`}</span>
                   ) : (
                     <AddressLink address={tx.to_addr} />
                   )

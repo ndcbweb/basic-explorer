@@ -49,7 +49,7 @@ export default async function TopStatsPage({ searchParams }) {
     <Container>
       <PageHeader title="Top Statistics" subtitle={`The most active accounts and tokens on ${config.chainName}`} />
       <LinkTabs active={range} tabs={Object.keys(RANGES).map((id) => ({ id, label: id.toUpperCase(), href: `/stats?range=${id}` }))} />
-      <h2 className="mb-3 text-sm font-semibold tracking-wide text-muted uppercase">Transactions</h2>
+      <h2 className="mb-3 text-cap">Transactions</h2>
       <div className="mb-8 grid gap-6 lg:grid-cols-3">
         <Board title="Top Txn Count Sent" rows={stats.senders} unit="Txns" value={(r) => formatNumber(r.n)} />
         <Board title="Top Txn Count Received" rows={stats.receivers} unit="Txns" value={(r) => formatNumber(r.n)} />
@@ -58,7 +58,7 @@ export default async function TopStatsPage({ searchParams }) {
         <Board title={`Top ${config.currency} Receiver`} rows={stats.valueReceived} unit={config.currency} value={(r) => fromWei(r.total)} />
         <Board title="Top Gas Used (Contracts)" rows={stats.gasUsers} unit="Gas" value={(r) => compactNumber(r.total)} />
       </div>
-      <h2 className="mb-3 text-sm font-semibold tracking-wide text-muted uppercase">Tokens</h2>
+      <h2 className="mb-3 text-cap">Tokens</h2>
       <div className="grid gap-6 lg:grid-cols-2">
         <Board title="Top Transferred Tokens" rows={stats.tokens} unit="Transfers" value={(r) => formatNumber(r.n)} token />
         <Board title="Top Token Senders" rows={stats.tokenSenders} unit="Transfers" value={(r) => formatNumber(r.n)} />

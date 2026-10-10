@@ -53,7 +53,7 @@ function VerifyTab() {
           onChange={(event) => setAddress(event.target.value)}
           spellCheck={false}
           placeholder="0x…"
-          className="field font-mono text-[13px]"
+          className="field font-mono text-xs"
         />
       </div>
       <div>
@@ -80,7 +80,7 @@ function VerifyTab() {
           value={signature}
           onChange={(event) => setSignature(event.target.value)}
           placeholder="0x…"
-          className="field font-mono text-[13px]"
+          className="field font-mono text-xs"
         />
       </div>
       <button type="submit" className="btn-primary">
@@ -137,7 +137,7 @@ function SignTab() {
       <div className="flex flex-wrap items-center gap-3">
         {account ? (
           <span className="chip">
-            Connected: <span className="mono text-ink">{account}</span>
+            Connected: <span className="text-ink">{account}</span>
           </span>
         ) : (
           <button type="button" onClick={connect} className="btn-primary">

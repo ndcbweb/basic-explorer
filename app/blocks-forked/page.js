@@ -48,7 +48,7 @@ export default async function ForkedBlocksPage({ searchParams }) {
                   <td>
                     <BlockLink number={row.number} />
                   </td>
-                  <td className="mono text-muted" title={row.hash}>
+                  <td className="text-muted" title={row.hash}>
                     {shortHash(row.hash, 12, 8)}
                   </td>
                   <td className="text-muted">{timeAgo(row.timestamp)}</td>

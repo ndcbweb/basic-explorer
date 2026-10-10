@@ -17,8 +17,8 @@ function StatItem({ icon, label, children, align = "left" }) {
         </span>
       )}
       <div className="min-w-0">
-        <p className="text-xs font-medium tracking-wide text-muted uppercase">{label}</p>
-        <p className="mt-0.5 truncate text-[15px] text-ink tabular-nums">{children}</p>
+        <p className="text-cap">{label}</p>
+        <p className="mt-0.5 truncate text-sm text-ink tabular-nums">{children}</p>
       </div>
     </div>
   );
@@ -71,7 +71,7 @@ export default async function HomePage() {
         />
         <div className="relative mx-auto max-w-[1320px] px-4 pt-10 pb-24 sm:px-6">
           <p className="mb-2 text-sm font-medium text-[#8ea6e8]">{config.chainId ? `Chain ID ${config.chainId}` : "EVM network"}</p>
-          <h1 className="mb-5 text-2xl font-semibold tracking-tight text-white sm:text-[28px]">The {config.chainName} Explorer</h1>
+          <h1 className="mb-5 text-xl font-medium text-white">The {config.chainName} Explorer</h1>
           <div className="max-w-2xl">
             <SearchBar size="lg" />
           </div>
@@ -162,7 +162,7 @@ export default async function HomePage() {
             ) : (
               <EmptyState className="flex-1" title="Waiting for blocks" body="The indexer is syncing with the chain." />
             )}
-            <Link href="/blocks" className="mt-auto block border-t border-line bg-subtle py-3 text-center text-xs font-semibold tracking-wide uppercase hover:bg-brand-50">
+            <Link href="/blocks" className="mt-auto block border-t border-line bg-subtle py-3 text-center text-cap font-medium hover:bg-brand-50">
               View all blocks →
             </Link>
           </section>
@@ -201,7 +201,7 @@ export default async function HomePage() {
             ) : (
               <EmptyState className="flex-1" title="No transactions yet" body="Send a transaction to the RPC endpoint and it will appear here within a few seconds." />
             )}
-            <Link href="/txs" className="mt-auto block border-t border-line bg-subtle py-3 text-center text-xs font-semibold tracking-wide uppercase hover:bg-brand-50">
+            <Link href="/txs" className="mt-auto block border-t border-line bg-subtle py-3 text-center text-cap font-medium hover:bg-brand-50">
               View all transactions →
             </Link>
           </section>

@@ -23,7 +23,7 @@ function Output({ title, value }) {
         <p className="text-sm font-medium text-ink">{title}</p>
         <CopyButton value={value} label={`Copy ${title}`} />
       </div>
-      <pre className="mono max-h-56 overflow-auto rounded-md border border-line bg-canvas p-3 text-[12.5px] break-all whitespace-pre-wrap text-muted">{value}</pre>
+      <pre className="mono max-h-56 overflow-auto rounded-md border border-line bg-canvas p-3 text-xs break-all whitespace-pre-wrap text-muted">{value}</pre>
     </div>
   );
 }
@@ -94,7 +94,7 @@ export default function CompilerForm({ versions: initialVersions, evmVersions, d
           <label htmlFor="cc-source" className="mb-1.5 block text-sm font-medium text-ink">
             Solidity Source
           </label>
-          <textarea id="cc-source" value={source} onChange={(e) => setSource(e.target.value)} rows={18} spellCheck={false} className="field font-mono text-[13px]" />
+          <textarea id="cc-source" value={source} onChange={(e) => setSource(e.target.value)} rows={18} spellCheck={false} className="field font-mono text-xs" />
         </div>
         <div className="flex flex-wrap items-center gap-3">
           <button type="submit" className="btn-primary" disabled={state.status === "compiling" || !version}>

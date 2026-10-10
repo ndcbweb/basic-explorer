@@ -121,7 +121,7 @@ export default async function TxPage({ params, searchParams }) {
           <DetailList>
             <DetailRow label="Transaction Hash" hint="Unique identifier of this transaction">
               <span className="inline-flex items-center gap-1">
-                <span className="mono break-all">{tx.hash}</span>
+                <span className="break-all">{tx.hash}</span>
                 <CopyButton value={tx.hash} label="Copy transaction hash" />
               </span>
             </DetailRow>
@@ -255,7 +255,7 @@ export default async function TxPage({ params, searchParams }) {
                     <p className="mono mb-2">
                       Function: {decoded.name}({decoded.inputs.map((input) => `${input.type} ${input.name}`).join(", ")})
                     </p>
-                    <table className="w-full text-left text-[13px]">
+                    <table className="w-full text-left text-xs">
                       <tbody>
                         {decoded.inputs.map((input, i) => (
                           <tr key={input.name || i} className="align-top">

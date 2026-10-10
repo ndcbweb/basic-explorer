@@ -200,7 +200,7 @@ function useDismiss(open, setOpen, ref) {
 }
 
 const PANEL = "rounded-xl border border-line border-t-2 border-t-brand-500 bg-surface shadow-[0_12px_32px_-12px_rgba(10,16,32,0.25)]";
-const ITEM = "flex items-center rounded-md px-3 py-2 text-sm text-ink hover:bg-canvas hover:text-brand-600";
+const ITEM = "flex items-center rounded-md px-3 py-1.5 text-[0.8203125rem] text-ink hover:bg-canvas hover:text-brand-600";
 
 function Dropdown({ entry, active }) {
   const [open, setOpen] = useState(false);
@@ -223,7 +223,7 @@ function Dropdown({ entry, active }) {
         aria-expanded={open}
         aria-haspopup="menu"
         onClick={() => setOpen((value) => !value)}
-        className={`inline-flex items-center gap-1 px-3 py-2 text-[15px] transition-colors ${active || open ? "text-brand-600" : "text-ink hover:text-brand-600"}`}
+        className={`inline-flex items-center gap-1 px-3 py-2 text-sm transition-colors ${active || open ? "text-brand-600" : "text-ink hover:text-brand-600"}`}
       >
         {entry.label}
         <Chevron open={open} />
@@ -233,7 +233,7 @@ function Dropdown({ entry, active }) {
           <div className="grid grid-cols-4 gap-6">
             {entry.mega.map((column) => (
               <div key={column.title}>
-                <p className="mb-2 px-3 text-sm font-semibold text-ink">{column.title}</p>
+                <p className="mb-2 px-3 text-sm font-medium text-ink">{column.title}</p>
                 {column.items.map((item) => (
                   <MenuLink key={item.label} item={item} onNavigate={() => setOpen(false)} className={ITEM} />
                 ))}
@@ -276,14 +276,14 @@ export default function NavBar() {
               key={entry.label}
               href={entry.href}
               aria-current={entry.match(pathname) ? "page" : undefined}
-              className={`px-3 py-2 text-[15px] transition-colors ${entry.match(pathname) ? "text-brand-600" : "text-ink hover:text-brand-600"}`}
+              className={`px-3 py-2 text-sm transition-colors ${entry.match(pathname) ? "text-brand-600" : "text-ink hover:text-brand-600"}`}
             >
               {entry.label}
             </Link>
           )
         )}
         <span className="mx-2 h-5 border-l border-line" aria-hidden="true" />
-        <span className="inline-flex items-center gap-1.5 px-2 py-2 text-[15px] text-ink">
+        <span className="inline-flex items-center gap-1.5 px-2 py-2 text-sm text-ink">
           <svg viewBox="0 0 20 20" className="h-4 w-4" aria-hidden="true">
             <path fill="currentColor" d="M10 2a4 4 0 1 1 0 8 4 4 0 0 1 0-8Zm0 1.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5ZM3 16.25C3 13.9 5.9 12 10 12s7 1.9 7 4.25a.75.75 0 0 1-1.5 0c0-1.13-2-2.75-5.5-2.75s-5.5 1.62-5.5 2.75a.75.75 0 0 1-1.5 0Z" />
           </svg>
@@ -313,24 +313,24 @@ export default function NavBar() {
           {MENU.map((entry) =>
             entry.items || entry.mega ? (
               <details key={entry.label} className="group border-b border-line py-1">
-                <summary className="flex cursor-pointer list-none items-center justify-between px-2 py-2.5 text-[15px] text-ink">
+                <summary className="flex cursor-pointer list-none items-center justify-between px-2 py-2.5 text-sm text-ink">
                   {entry.label}
                   <Chevron open={false} />
                 </summary>
                 <div className="pb-2">
                   {flatItems(entry).map((item) => (
-                    <MenuLink key={item.label} item={item} className="flex items-center rounded-md px-3 py-2 text-sm text-ink hover:bg-canvas" />
+                    <MenuLink key={item.label} item={item} className="flex items-center rounded-md px-3 py-2 text-[0.8203125rem] text-ink hover:bg-canvas" />
                   ))}
                 </div>
               </details>
             ) : (
-              <Link key={entry.label} href={entry.href} className="block border-b border-line px-2 py-3 text-[15px] text-ink">
+              <Link key={entry.label} href={entry.href} className="block border-b border-line px-2 py-3 text-sm text-ink">
                 {entry.label}
               </Link>
             )
           )}
           <div className="px-2 py-3">
-            <AccountLink className="text-[15px] text-ink" />
+            <AccountLink className="text-sm text-ink" />
           </div>
         </div>
       )}

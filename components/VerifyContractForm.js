@@ -188,7 +188,7 @@ export default function VerifyContractForm({ initialAddress = "", versions: init
           rows={16}
           spellCheck={false}
           placeholder={standard ? '{\n  "language": "Solidity",\n  "sources": { … },\n  "settings": { … }\n}' : "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.20;\n\ncontract MyToken { … }"}
-          className="field font-mono text-[13px]"
+          className="field font-mono text-xs"
         />
       </div>
 
@@ -202,7 +202,7 @@ export default function VerifyContractForm({ initialAddress = "", versions: init
           onChange={(event) => set("constructorArgs")(event.target.value)}
           rows={2}
           spellCheck={false}
-          className="field font-mono text-[13px]"
+          className="field font-mono text-xs"
         />
       </div>
 

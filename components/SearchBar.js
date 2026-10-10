@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 const SIZES = {
   lg: { icon: "left-4 h-5 w-5", input: "h-13 pr-28 pl-12 text-base", button: "right-1.5 h-10 px-5 text-sm" },
   md: { icon: "left-3 h-4 w-4", input: "h-10 pr-20 pl-9 text-sm", button: "right-1 h-8 px-3 text-xs" },
-  sm: { icon: "left-2.5 h-3.5 w-3.5", input: "h-8 pr-16 pl-8 text-[13px]", button: "right-0.5 h-7 px-2.5 text-xs" },
+  sm: { icon: "left-2.5 h-3.5 w-3.5", input: "h-8 pr-16 pl-8 text-xs", button: "right-0.5 h-7 px-2.5 text-xs" },
 };
 
 export default function SearchBar({ size = "md", autoFocus = false }) {

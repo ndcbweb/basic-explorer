@@ -16,7 +16,7 @@ export default async function Header() {
   return (
     <header className="sticky top-0 z-40 bg-surface">
       <div className="border-b border-line">
-        <div className="mx-auto flex h-11 max-w-[1320px] items-center justify-between gap-4 px-4 text-[13px] text-muted sm:px-6">
+        <div className="mx-auto flex h-11 max-w-[1320px] items-center justify-between gap-4 px-4 text-xs text-muted sm:px-6">
           <div className="flex min-w-0 items-center gap-4 overflow-hidden whitespace-nowrap">
             <span>
               {config.currency}
@@ -50,7 +50,7 @@ export default async function Header() {
         <div className="mx-auto flex h-14 max-w-[1320px] items-center justify-between gap-6 px-4 sm:px-6">
           <Link href="/" className="flex shrink-0 items-center gap-2 text-ink hover:text-ink">
             <Logo className="h-7 w-7" />
-            <span className="text-lg font-semibold tracking-tight">{config.chainName}</span>
+            <span className="text-lg font-semibold">{config.chainName}</span>
           </Link>
           <NavBar />
         </div>
