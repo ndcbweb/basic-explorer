@@ -52,7 +52,7 @@ export default function SearchBar({ size = "md", autoFocus = false }) {
         spellCheck={false}
         autoComplete="off"
         placeholder="Search by Address / Txn Hash / Block"
-        className={`w-full rounded-lg border border-line bg-white text-ink placeholder:text-faint focus:border-brand-500 focus:ring-4 focus:ring-brand-100 focus:outline-none ${styles.input}`}
+        className={`w-full rounded-lg border border-line bg-surface text-ink placeholder:text-faint focus:border-brand-500 focus:ring-4 focus:ring-brand-100 focus:outline-none ${styles.input}`}
       />
       <button
         type="submit"

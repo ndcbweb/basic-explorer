@@ -26,6 +26,34 @@
   --color-bad-700: #b42323;
   --color-wait-50: #fff6e5;
   --color-wait-700: #9a5b00;
+
+  --color-subtle: #fafbfc;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+.dark {
+  color-scheme: dark;
+  --color-canvas: #0b0f17;
+  --color-surface: #111722;
+  --color-subtle: #0e141e;
+  --color-line: #222b3a;
+  --color-ink: #e6e9ef;
+  --color-muted: #9aa5b8;
+  --color-faint: #6c778b;
+
+  --color-brand-50: #15233f;
+  --color-brand-100: #1d3159;
+  --color-brand-500: #5b8cff;
+  --color-brand-600: #6f9bff;
+  --color-brand-700: #9ab8ff;
+
+  --color-ok-50: #0f2a1e;
+  --color-ok-700: #4ade80;
+  --color-bad-50: #2f1517;
+  --color-bad-700: #f87171;
+  --color-wait-50: #2c2210;
+  --color-wait-700: #fbbf24;
 }
 
 @layer base {
@@ -60,7 +88,7 @@
     @apply w-full text-left text-sm;
   }
   .data-table thead th {
-    @apply border-b border-line bg-[#fafbfc] px-5 py-3 text-xs font-semibold tracking-wide whitespace-nowrap text-muted uppercase;
+    @apply border-b border-line bg-subtle px-5 py-3 text-xs font-semibold tracking-wide whitespace-nowrap text-muted uppercase;
   }
   .data-table tbody td {
     @apply border-b border-line px-5 py-3.5 align-middle whitespace-nowrap;
@@ -69,12 +97,48 @@
     @apply border-b-0;
   }
   .data-table tbody tr:hover td {
-    @apply bg-[#fafbfd];
+    @apply bg-subtle;
   }
   .chip {
-    @apply inline-flex items-center gap-1 rounded-md border border-line bg-[#f8f9fb] px-2 py-0.5 text-xs font-medium text-muted;
+    @apply inline-flex items-center gap-1 rounded-md border border-line bg-subtle px-2 py-0.5 text-xs font-medium text-muted;
   }
   .mono {
     @apply font-mono text-[13px];
+  }
+  .doc {
+    @apply text-[15px] leading-7 text-ink;
+  }
+  .doc h2 {
+    @apply mt-9 mb-3 scroll-mt-28 text-lg font-semibold tracking-tight first:mt-0;
+  }
+  .doc h3 {
+    @apply mt-6 mb-2 text-[15px] font-semibold;
+  }
+  .doc p {
+    @apply mb-4 text-muted;
+  }
+  .doc ul {
+    @apply mb-4 list-disc space-y-1.5 pl-5 text-muted;
+  }
+  .doc ol {
+    @apply mb-4 list-decimal space-y-1.5 pl-5 text-muted;
+  }
+  .doc strong {
+    @apply font-semibold text-ink;
+  }
+  .doc code {
+    @apply rounded bg-subtle px-1.5 py-0.5 font-mono text-[13px] text-ink;
+  }
+  .doc pre {
+    @apply mb-4 overflow-x-auto rounded-lg border border-line bg-subtle p-4 font-mono text-[13px] leading-6 text-ink;
+  }
+  .doc pre code {
+    @apply bg-transparent p-0;
+  }
+  .field {
+    @apply w-full rounded-lg border border-line bg-surface px-3 py-2.5 text-sm text-ink placeholder:text-faint focus:border-brand-500 focus:ring-4 focus:ring-brand-100 focus:outline-none;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-brand-600 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-brand-700 hover:text-white disabled:cursor-not-allowed disabled:opacity-60;
   }
 }

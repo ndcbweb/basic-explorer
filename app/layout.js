@@ -16,9 +16,15 @@ export async function generateMetadata() {
   };
 }
 
+// Runs before paint so the saved or system theme applies without a light flash.
+const THEME_SCRIPT = `try{var t=localStorage.getItem("theme");if(t==="dark"||(!t&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("dark")}catch(e){}`;
+
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${plexSans.variable} ${plexMono.variable}`}>
+    <html lang="en" className={`${plexSans.variable} ${plexMono.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
+      </head>
       <body className="flex min-h-screen flex-col">
         <Header />
         <main className="flex-1">{children}</main>

@@ -41,12 +41,12 @@ export default async function BlockPage({ params }) {
       <PageHeader title={<>Block <span className="text-muted">#{formatNumber(number)}</span></>}>
         <div className="flex gap-2">
           {number > 0 && (
-            <Link href={`/block/${number - 1}`} className="rounded-md border border-line bg-white px-3 py-1.5 text-sm" aria-label="Previous block">
+            <Link href={`/block/${number - 1}`} className="rounded-md border border-line bg-surface px-3 py-1.5 text-sm" aria-label="Previous block">
               ‹ Prev
             </Link>
           )}
           {number < head && (
-            <Link href={`/block/${number + 1}`} className="rounded-md border border-line bg-white px-3 py-1.5 text-sm" aria-label="Next block">
+            <Link href={`/block/${number + 1}`} className="rounded-md border border-line bg-surface px-3 py-1.5 text-sm" aria-label="Next block">
               Next ›
             </Link>
           )}

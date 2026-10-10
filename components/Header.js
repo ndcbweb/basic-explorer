@@ -2,7 +2,7 @@ import Link from "next/link";
 import { config } from "@/lib/config";
 import { formatGwei, formatNumber } from "@/lib/format";
 import { safeRpc } from "@/lib/rpc";
-import { AddNetworkIcon, HeaderSearch } from "./HeaderTools";
+import { AddNetworkIcon, HeaderSearch, ThemeToggle } from "./HeaderTools";
 import Logo from "./Logo";
 import NavBar from "./NavBar";
 
@@ -14,7 +14,7 @@ export default async function Header() {
   const head = headHex ? Number(BigInt(headHex)) : null;
 
   return (
-    <header className="sticky top-0 z-40 bg-white">
+    <header className="sticky top-0 z-40 bg-surface">
       <div className="border-b border-line">
         <div className="mx-auto flex h-11 max-w-[1320px] items-center justify-between gap-4 px-4 text-[13px] text-muted sm:px-6">
           <div className="flex min-w-0 items-center gap-4 overflow-hidden whitespace-nowrap">
@@ -41,6 +41,7 @@ export default async function Header() {
           <div className="flex items-center gap-2">
             <HeaderSearch />
             <AddNetworkIcon chainId={config.chainId} chainName={config.chainName} currency={config.currency} />
+            <ThemeToggle />
           </div>
         </div>
       </div>

@@ -55,9 +55,9 @@ export function TokenLink({ address, name, symbol }) {
 }
 
 const STATUS = {
-  success: { label: "Success", cls: "border-emerald-200 bg-ok-50 text-ok-700" },
-  failed: { label: "Failed", cls: "border-red-200 bg-bad-50 text-bad-700" },
-  pending: { label: "Pending", cls: "border-amber-200 bg-wait-50 text-wait-700" },
+  success: { label: "Success", cls: "border-ok-700/25 bg-ok-50 text-ok-700" },
+  failed: { label: "Failed", cls: "border-bad-700/25 bg-bad-50 text-bad-700" },
+  pending: { label: "Pending", cls: "border-wait-700/25 bg-wait-50 text-wait-700" },
 };
 
 export function StatusBadge({ status }) {
@@ -73,7 +73,7 @@ export function StatusBadge({ status }) {
 
 export function MethodBadge({ method }) {
   return (
-    <span className="inline-block max-w-[120px] truncate rounded-md border border-line bg-[#f8f9fb] px-2 py-0.5 text-center text-xs font-medium text-ink">
+    <span className="inline-block max-w-[120px] truncate rounded-md border border-line bg-subtle px-2 py-0.5 text-center text-xs font-medium text-ink">
       {method || "—"}
     </span>
   );
@@ -81,8 +81,8 @@ export function MethodBadge({ method }) {
 
 export function DirectionBadge({ direction }) {
   const styles = {
-    IN: "border-emerald-200 bg-ok-50 text-ok-700",
-    OUT: "border-amber-200 bg-wait-50 text-wait-700",
+    IN: "border-ok-700/25 bg-ok-50 text-ok-700",
+    OUT: "border-wait-700/25 bg-wait-50 text-wait-700",
     SELF: "border-line bg-canvas text-muted",
   };
   return (
@@ -147,11 +147,35 @@ export function Tabs({ tabs, active, basePath }) {
             role="tab"
             aria-selected={selected}
             className={`rounded-lg px-3.5 py-2 text-sm font-medium whitespace-nowrap transition-colors ${
-              selected ? "bg-brand-600 text-white hover:text-white" : "bg-white text-muted ring-1 ring-line hover:text-ink"
+              selected ? "bg-brand-600 text-white hover:text-white" : "bg-surface text-muted ring-1 ring-line hover:text-ink"
             }`}
           >
             {tab.label}
             {tab.count != null && <span className={`ml-1.5 ${selected ? "text-white/80" : "text-faint"}`}>{tab.count}</span>}
+          </Link>
+        );
+      })}
+    </div>
+  );
+}
+
+/** Tabs whose entries carry their own href (for filters that live in the query string). */
+export function LinkTabs({ tabs, active }) {
+  return (
+    <div role="tablist" className="mb-4 flex gap-1 overflow-x-auto">
+      {tabs.map((tab) => {
+        const selected = tab.id === active;
+        return (
+          <Link
+            key={tab.id}
+            href={tab.href}
+            role="tab"
+            aria-selected={selected}
+            className={`rounded-lg px-3.5 py-2 text-sm font-medium whitespace-nowrap transition-colors ${
+              selected ? "bg-brand-600 text-white hover:text-white" : "bg-surface text-muted ring-1 ring-line hover:text-ink"
+            }`}
+          >
+            {tab.label}
           </Link>
         );
       })}
@@ -172,7 +196,7 @@ export function Pagination({ page, total, pageSize, basePath, params = {} }) {
         {label}
       </span>
     ) : (
-      <Link href={href(p)} aria-label={ariaLabel} className="rounded-md border border-line bg-white px-2.5 py-1 text-brand-600 hover:bg-brand-50">
+      <Link href={href(p)} aria-label={ariaLabel} className="rounded-md border border-line bg-surface px-2.5 py-1 text-brand-600 hover:bg-brand-50">
         {label}
       </Link>
     );

@@ -162,7 +162,7 @@ export default async function HomePage() {
             ) : (
               <EmptyState className="flex-1" title="Waiting for blocks" body="The indexer is syncing with the chain." />
             )}
-            <Link href="/blocks" className="mt-auto block border-t border-line bg-[#fafbfc] py-3 text-center text-xs font-semibold tracking-wide uppercase hover:bg-brand-50">
+            <Link href="/blocks" className="mt-auto block border-t border-line bg-subtle py-3 text-center text-xs font-semibold tracking-wide uppercase hover:bg-brand-50">
               View all blocks →
             </Link>
           </section>
@@ -201,7 +201,7 @@ export default async function HomePage() {
             ) : (
               <EmptyState className="flex-1" title="No transactions yet" body="Send a transaction to the RPC endpoint and it will appear here within a few seconds." />
             )}
-            <Link href="/txs" className="mt-auto block border-t border-line bg-[#fafbfc] py-3 text-center text-xs font-semibold tracking-wide uppercase hover:bg-brand-50">
+            <Link href="/txs" className="mt-auto block border-t border-line bg-subtle py-3 text-center text-xs font-semibold tracking-wide uppercase hover:bg-brand-50">
               View all transactions →
             </Link>
           </section>

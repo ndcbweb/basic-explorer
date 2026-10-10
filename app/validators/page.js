@@ -42,7 +42,7 @@ export default function ValidatorsPage() {
                       <td>
                         <span
                           className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-xs font-medium ${
-                            active ? "border-emerald-200 bg-ok-50 text-ok-700" : "border-line bg-canvas text-muted"
+                            active ? "border-ok-700/25 bg-ok-50 text-ok-700" : "border-line bg-canvas text-muted"
                           }`}
                         >
                           <span className="h-1.5 w-1.5 rounded-full bg-current" aria-hidden="true" />

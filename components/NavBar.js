@@ -11,33 +11,63 @@ const MENU = [
     match: (p) => /^\/(txs?|blocks?|validators|accounts|address)(\/|$)/.test(p),
     items: [
       { label: "Transactions", href: "/txs" },
-      { label: "View Blocks", href: "/blocks" },
+      { label: "Pending Transactions", href: "/txs/pending" },
       { divider: true },
+      { label: "View Blocks", href: "/blocks" },
       { label: "Validators", href: "/validators" },
+      { divider: true },
       { label: "Top Accounts", href: "/accounts" },
     ],
   },
   {
     label: "Tokens",
-    match: (p) => /^\/tokens?(\/|$)/.test(p),
+    match: (p) => /^\/(tokens|token|tokentxns)(\/|$)/.test(p),
     items: [
-      { label: "Token Tracker (ERC-20 / ERC-721)", href: "/tokens" },
+      { label: "Top Tokens (ERC-20)", href: "/tokens" },
+      { label: "Token Transfers (ERC-20)", href: "/tokentxns" },
+    ],
+  },
+  {
+    label: "NFTs",
+    items: [
+      { label: "Top NFTs (ERC-721)", href: "/tokens?type=erc721" },
+      { label: "NFT Transfers", href: "/tokentxns?type=erc721" },
     ],
   },
   {
     label: "Resources",
+    match: (p) => /^\/(charts|network-status|knowledge-base|what-is-a-block-explorer)(\/|$)/.test(p),
     items: [
-      { label: "Explorer Health API", href: "/api/health" },
+      { label: "Charts & Stats", href: "/charts" },
+      { label: "Network Status", href: "/network-status" },
+      { divider: true },
+      { label: "Knowledge Base", href: "/knowledge-base" },
+      { label: "What is a Block Explorer?", href: "/what-is-a-block-explorer" },
+    ],
+  },
+  {
+    label: "Developers",
+    match: (p) => /^\/(apis|pushtx|unitconverter)(\/|$)/.test(p),
+    items: [
+      { label: "API Documentation", href: "/apis" },
+      { label: "Broadcast Transaction", href: "/pushtx" },
+      { label: "Unit Converter", href: "/unitconverter" },
+      { divider: true },
       { label: "JSON-RPC Spec", href: "https://ethereum.org/en/developers/docs/apis/json-rpc/", external: true },
       { label: "Explorer Source Code", href: "https://github.com/ndcbweb/basic-explorer", external: true },
     ],
   },
   {
     label: "More",
+    match: (p) => /^\/(about|contact|explorer-as-a-service|priority-support|brand-assets|terms|bug-bounty|trust-center)(\/|$)/.test(p),
     items: [
+      { label: "About Us", href: "/about" },
+      { label: "Explorer as a Service", href: "/explorer-as-a-service" },
+      { label: "Priority Support", href: "/priority-support" },
+      { label: "Contact Us", href: "/contact" },
+      { divider: true },
       { label: "Nadcab Console", href: "https://console.nadcab.com", external: true },
       { label: "Launch Your Own Chain", href: "https://console.nadcab.com", external: true },
-      { label: "About Nadcab Labs", href: "https://www.nadcab.com", external: true },
     ],
   },
 ];
@@ -106,7 +136,7 @@ function Dropdown({ entry, active }) {
         <Chevron open={open} />
       </button>
       {open && (
-        <div role="menu" className="absolute top-full right-0 z-50 min-w-[230px] rounded-xl border border-line border-t-2 border-t-brand-500 bg-white p-2 shadow-[0_12px_32px_-12px_rgba(10,16,32,0.25)]">
+        <div role="menu" className="absolute top-full right-0 z-50 min-w-[230px] rounded-xl border border-line border-t-2 border-t-brand-500 bg-surface p-2 shadow-[0_12px_32px_-12px_rgba(10,16,32,0.25)]">
           {entry.items.map((item, i) =>
             item.divider ? (
               <div key={`d${i}`} className="my-1.5 border-t border-line" role="separator" />
@@ -180,7 +210,7 @@ export default function NavBar() {
       </button>
 
       {mobileOpen && (
-        <div id="mobile-menu" className="absolute inset-x-0 top-full border-b border-line bg-white px-4 pb-4 shadow-lg lg:hidden">
+        <div id="mobile-menu" className="absolute inset-x-0 top-full border-b border-line bg-surface px-4 pb-4 shadow-lg lg:hidden">
           {MENU.map((entry) =>
             entry.items ? (
               <div key={entry.label} className="border-b border-line py-2 last:border-0">

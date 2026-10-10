@@ -39,8 +39,8 @@ export default function TxChart({ points }) {
           <span>{compactNumber(max)}</span>
           <span>{compactNumber(min)}</span>
         </div>
-        <svg viewBox={`0 0 ${WIDTH} ${HEIGHT}`} className="h-20 w-full overflow-visible" preserveAspectRatio="none" role="img" aria-label={`${total} transactions over the last 14 days`}>
-          <path d={smoothPath(coords)} fill="none" stroke="#1f2937" strokeWidth="1.5" vectorEffect="non-scaling-stroke" strokeLinecap="round" />
+        <svg viewBox={`0 0 ${WIDTH} ${HEIGHT}`} className="h-20 w-full overflow-visible text-ink" preserveAspectRatio="none" role="img" aria-label={`${total} transactions over the last 14 days`}>
+          <path d={smoothPath(coords)} fill="none" stroke="currentColor" strokeWidth="1.5" vectorEffect="non-scaling-stroke" strokeLinecap="round" />
           {points.map((p, i) => (
             <rect key={p.day} x={coords[i][0] - step / 2} y="0" width={step} height={HEIGHT} fill="transparent">
               <title>{`${fmt(p.date)}: ${p.count.toLocaleString("en-US")} txns`}</title>
