@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export function AddNetworkButton({ chainId, chainName, currency }) {
+export function AddNetworkButton({ chainId, chainName, currency, currencyName }) {
   const [state, setState] = useState("idle");
   if (!chainId) return null;
 
@@ -18,7 +18,7 @@ export function AddNetworkButton({ chainId, chainName, currency }) {
           {
             chainId: `0x${Number(chainId).toString(16)}`,
             chainName,
-            nativeCurrency: { name: currency, symbol: currency, decimals: 18 },
+            nativeCurrency: { name: currencyName || currency, symbol: currency, decimals: 18 },
             rpcUrls: [`${window.location.protocol}//${window.location.hostname}:8545`],
             blockExplorerUrls: [window.location.origin],
           },

@@ -53,7 +53,7 @@ export function HeaderSearch() {
   );
 }
 
-export function AddNetworkIcon({ chainId, chainName, currency }) {
+export function AddNetworkIcon({ chainId, chainName, currency, currencyName }) {
   const [done, setDone] = useState(false);
   if (!chainId) return null;
 
@@ -69,7 +69,7 @@ export function AddNetworkIcon({ chainId, chainName, currency }) {
           {
             chainId: `0x${Number(chainId).toString(16)}`,
             chainName,
-            nativeCurrency: { name: currency, symbol: currency, decimals: 18 },
+            nativeCurrency: { name: currencyName || currency, symbol: currency, decimals: 18 },
             rpcUrls: [`${window.location.protocol}//${window.location.hostname}:8545`],
             blockExplorerUrls: [window.location.origin],
           },

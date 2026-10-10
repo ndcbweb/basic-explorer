@@ -40,7 +40,7 @@ export default async function Header() {
           </div>
           <div className="flex items-center gap-2">
             <HeaderSearch />
-            <AddNetworkIcon chainId={config.chainId} chainName={config.chainName} currency={config.currency} />
+            <AddNetworkIcon chainId={config.chainId} chainName={config.chainName} currency={config.currency} currencyName={config.currencyName} />
             <ThemeToggle />
           </div>
         </div>
