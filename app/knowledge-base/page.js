@@ -55,6 +55,12 @@ const ARTICLES = [
             {config.chainName} uses Proof of Stake. Staked validators on the beacon chain propose and attest to blocks; each block&apos;s fee
             recipient is shown as <strong>Validated By</strong>.
           </>
+        ) : config.consensus.key === "pow" ? (
+          <>
+            {config.chainName} uses Proof of Work ({config.consensus.detail.replace(/^Proof of Work \(|\)$/g, "")}). Miners compete to find a
+            block hash below the current difficulty target; the winner earns the block reward plus fees and is shown as{" "}
+            <strong>Mined By</strong>. Difficulty adjusts every block to keep block times steady.
+          </>
         ) : config.consensus.key === "dpos" ? (
           <>
             {config.chainName} uses Delegated Proof of Stake (Parlia). Holders delegate stake to validators in the StakeHub system contract,

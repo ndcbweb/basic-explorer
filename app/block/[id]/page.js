@@ -75,9 +75,17 @@ export default async function BlockPage({ params }) {
             )}{" "}
             <span className="text-muted">in this block</span>
           </DetailRow>
-          <DetailRow label="Validated By" hint={`Block producer (${config.consensus.name})`}>
+          <DetailRow
+            label={config.consensus.key === "pow" ? "Mined By" : "Validated By"}
+            hint={`Block producer (${config.consensus.name})`}
+          >
             <AddressLink address={signer} full copy />
           </DetailRow>
+          {config.consensus.key === "pow" && block.difficulty != null && (
+            <DetailRow label="Difficulty" hint="Work needed to mine this block">
+              {formatNumber(BigInt(block.difficulty))}
+            </DetailRow>
+          )}
           <DetailRow label="Transaction Fees">
             {formatAmount(fees, 18, 10)} {config.currency}
           </DetailRow>

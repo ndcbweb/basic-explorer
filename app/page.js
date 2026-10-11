@@ -90,7 +90,7 @@ export default async function HomePage() {
               </StatItem>
             </StatRow>
             <StatRow>
-              <StatItem icon={icons.shield} label="Validators">
+              <StatItem icon={icons.shield} label={config.consensus.key === "pow" ? "Miners" : "Validators"}>
                 {formatNumber(config.validatorCount || signers.length)} <span className="text-muted">({config.consensus.name})</span>
               </StatItem>
             </StatRow>
