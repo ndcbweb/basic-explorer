@@ -3,7 +3,6 @@
 import { useMemo, useState } from "react";
 import { decodeFunctionResult, encodeFunctionData, getAddress } from "viem";
 import { connectWallet, ensureChain, walletError } from "@/components/tools/wallet";
-import { config } from "@/lib/config";
 
 function parseAbi(raw) {
   if (!raw) return [];
@@ -83,7 +82,7 @@ async function rpc(method, params) {
   return data.result;
 }
 
-function MethodCard({ item, address, mode }) {
+function MethodCard({ item, address, mode, chainId, currency }) {
   const inputs = item.inputs || [];
   const [args, setArgs] = useState(() => inputs.map(() => ""));
   const [payable, setPayable] = useState("");
@@ -105,7 +104,7 @@ function MethodCard({ item, address, mode }) {
         setResult(formatResult(decoded));
       } else {
         const from = await connectWallet();
-        await ensureChain(config.chainId);
+        await ensureChain(chainId);
         const tx = { from, to: address, data };
         if (item.stateMutability === "payable" && payable.trim()) {
           const eth = Number(payable);
@@ -149,7 +148,7 @@ function MethodCard({ item, address, mode }) {
       ) : null}
       {mode === "write" && item.stateMutability === "payable" ? (
         <label className="mb-3 block text-xs">
-          <span className="text-muted">Value ({config.currency || "ETH"})</span>
+          <span className="text-muted">Value ({currency || "ETH"})</span>
           <input
             className="mt-1 w-full rounded-md border border-line bg-canvas px-2.5 py-1.5 font-mono text-sm text-ink"
             value={payable}
@@ -173,7 +172,7 @@ function MethodCard({ item, address, mode }) {
 }
 
 /** Read and Write Contract panels for a verified contract, driven by its published ABI. */
-export default function ContractInteract({ address, abi: rawAbi, initialTab = "read" }) {
+export default function ContractInteract({ address, abi: rawAbi, initialTab = "read", chainId = "", currency = "ETH" }) {
   const abi = useMemo(() => parseAbi(rawAbi), [rawAbi]);
   const reads = useMemo(() => abi.filter(isReadable), [abi]);
   const writes = useMemo(() => abi.filter(isWritable), [abi]);
@@ -196,14 +195,14 @@ export default function ContractInteract({ address, abi: rawAbi, initialTab = "r
         </button>
       </div>
       {tab === "write" ? (
-        <p className="text-xs text-muted">Writes are signed in your wallet on chain ID {config.chainId || "—"}. Connect the owner wallet before calling admin methods.</p>
+        <p className="text-xs text-muted">Writes are signed in your wallet on chain ID {chainId || "—"}. Connect the owner wallet before calling admin methods.</p>
       ) : (
         <p className="text-xs text-muted">Reads go through the explorer RPC. No wallet needed.</p>
       )}
       {list.length ? (
         <div className="space-y-3">
           {list.map((item, i) => (
-            <MethodCard key={`${item.name}-${i}`} item={item} address={address} mode={tab} />
+            <MethodCard key={`${item.name}-${i}`} item={item} address={address} mode={tab} chainId={chainId} currency={currency} />
           ))}
         </div>
       ) : (

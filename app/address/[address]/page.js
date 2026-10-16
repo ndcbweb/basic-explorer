@@ -235,7 +235,14 @@ export default async function AddressPage({ params, searchParams }) {
                   </Link>
                 </span>
               </div>
-              <ContractInteract key={tab} address={address} abi={verified.abi} initialTab={tab} />
+              <ContractInteract
+                key={tab}
+                address={address}
+                abi={verified.abi}
+                initialTab={tab}
+                chainId={config.chainId}
+                currency={config.currency}
+              />
             </>
           ) : null}
         </section>
