@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import ContractInteract from "@/components/ContractInteract";
 import ContractSource, { VerifyPrompt } from "@/components/ContractSource";
 import CopyButton from "@/components/CopyButton";
 import { TransferTable, TxTable } from "@/components/tables";
@@ -45,7 +46,7 @@ export default async function AddressPage({ params, searchParams }) {
   const totalTransfers = tokenTransferCount({ address });
   const holdings = addressTokenBalances(address);
   const { page, limit, offset } = pageParams(query);
-  const tab = ["transfers", "holdings", "code"].includes(query.tab) ? query.tab : "txs";
+  const tab = ["transfers", "holdings", "code", "read", "write"].includes(query.tab) ? query.tab : "txs";
   const base = `/address/${address}`;
 
   const tabs = [
@@ -53,7 +54,13 @@ export default async function AddressPage({ params, searchParams }) {
     { id: "transfers", label: "Token Transfers", count: totalTransfers },
     { id: "holdings", label: "Token Holdings", count: holdings.length },
   ];
-  if (isContract) tabs.push({ id: "code", label: verified ? "Contract ✓" : "Contract" });
+  if (isContract) {
+    tabs.push({ id: "code", label: verified ? "Contract ✓" : "Contract" });
+    if (verified?.abi) {
+      tabs.push({ id: "read", label: "Read Contract" });
+      tabs.push({ id: "write", label: "Write Contract" });
+    }
+  }
 
   return (
     <Container>
@@ -204,11 +211,33 @@ export default async function AddressPage({ params, searchParams }) {
                 <span className="flex gap-3 text-sm">
                   <Link href={`/find-similar-contracts?a=${address}`}>Similar contracts</Link>
                   <Link href={`/code-reader?a=${address}`}>Code reader</Link>
+                  {verified?.abi ? (
+                    <>
+                      <Link href={`${base}?tab=read`}>Read Contract</Link>
+                      <Link href={`${base}?tab=write`}>Write Contract</Link>
+                    </>
+                  ) : null}
                 </span>
               </div>
               {verified ? <ContractSource contract={verified} code={code} /> : <VerifyPrompt address={address} code={code} />}
             </>
           )}
+          {(tab === "read" || tab === "write") && verified?.abi ? (
+            <>
+              <div className="card-head">
+                <p className="text-sm text-muted">
+                  {tab === "read" ? "Read" : "Write"} methods from the verified ABI of {verified.name}
+                </p>
+                <span className="flex gap-3 text-sm">
+                  <Link href={`${base}?tab=code`}>Source</Link>
+                  <Link href={`${base}?tab=${tab === "read" ? "write" : "read"}`}>
+                    {tab === "read" ? "Write Contract" : "Read Contract"}
+                  </Link>
+                </span>
+              </div>
+              <ContractInteract key={tab} address={address} abi={verified.abi} initialTab={tab} />
+            </>
+          ) : null}
         </section>
       </div>
     </Container>
